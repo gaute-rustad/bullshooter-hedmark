@@ -2,9 +2,10 @@ name: Oppdater Hedmark C Dartliga
 
 on:
   schedule:
-    # Kjører onsdager og torsdager kl 22:00, 23:00 og 07:00 UTC (kampkvelder og morgenen etter)
-    - cron: '0 21,22,23 * * 3'
-    - cron: '0 6,10,16 * * 4'
+    # Torsdager: Hver time fra kl. 15:00 til 24:00 (midnatt) norsk tid (14:00-23:00 UTC)
+    - cron: '0 14-23 * * 4'
+    # Fredager: Kl. 08:00 norsk tid (07:00 UTC)
+    - cron: '0 7 * * 5'
   workflow_dispatch: # Gir deg en manuell "Run workflow"-knapp i GitHub
     inputs:
       force_notify:
