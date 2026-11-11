@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="no" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hedmark C Dartliga | Bullshooter E-Dart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dart: {
+              dark: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+              accent: '#10b981',
+              gold: '#f59e0b',
+              red: '#ef4444'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .badge-gold { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .badge-silver { background: linear-gradient(135deg, #94a3b8, #64748b); }
+    .badge-bronze { background: linear-gradient(135deg, #d97706, #b45309); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-emerald-500/20 text-xl font-bold">
+          🎯
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-tight text-white">Hedmark C</h1>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">E-Dart Liga</span>
+          </div>
+          <p class="text-xs text-slate-400" id="header-updated">Laster data...</p>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex items-center gap-2">
+        <button id="btn-copy-summary" onclick="copyWeeklySummary()" class="text-xs font-medium px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white flex items-center gap-1.5 transition shadow shadow-emerald-600/30 active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+          <span class="hidden sm:inline">Kopier for</span> Messenger/Spond
+        </button>
+        <a href="https://bullshooter.no/index.php/liga/ligaspill-hedmark/hedmark-c" target="_blank" rel="noopener" class="text-xs font-medium px-2.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition" title="Kilde: Bullshooter.no">
+          Kilde ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-6xl mx-auto px-4">
+      <nav class="flex space-x-1 sm:space-x-2 border-t border-slate-800/80 pt-2 overflow-x-auto pb-2 scrollbar-none" id="tabs">
+        <button onclick="switchTab('tabell')" id="tab-btn-tabell" class="tab-btn active px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 whitespace-nowrap transition">
+          🏆 Tabell & Kamper
+        </button>
+        <button onclick="switchTab('runde')" id="tab-btn-runde" class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 whitespace-nowrap transition">
+          ⚡ Siste runde (<span id="tab-round-num">12</span>)
+        </button>
+        <button onclick="switchTab('snitt')" id="tab-btn-snitt" class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 whitespace-nowrap transition">
+          🎯 Spillersnitt
+        </button>
+        <button onclick="switchTab('mittlag')" id="tab-btn-mittlag" class="tab-btn px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 whitespace-nowrap transition">
+          👥 Mitt Lag (<span id="nav-my-team-name">Darty Nellie</span>)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full space-y-6">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: TABELL & TERMINLISTE                -->
+    <!-- ========================================== -->
+    <section id="tab-tabell" class="tab-content space-y-6">
+      
+      <!-- Quick Highlights Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Ligaleder</p>
+          <p class="text-base sm:text-lg font-bold text-emerald-400 truncate" id="card-leader">-</p>
+          <span class="text-[11px] text-slate-500" id="card-leader-pts">-</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Siste spilte runde</p>
+          <p class="text-base sm:text-lg font-bold text-amber-400" id="card-latest-round">Runde 12</p>
+          <span class="text-[11px] text-slate-500" id="card-latest-date">-</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Høyeste 501-snitt</p>
+          <p class="text-base sm:text-lg font-bold text-cyan-400 truncate" id="card-top-ppr">-</p>
+          <span class="text-[11px] text-slate-500" id="card-top-ppr-val">-</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Høyeste utgang (High Out)</p>
+          <p class="text-base sm:text-lg font-bold text-purple-400 truncate" id="card-high-out">-</p>
+          <span class="text-[11px] text-slate-500" id="card-high-out-val">-</span>
+        </div>
+      </div>
+
+      <!-- Tabell -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <h2 class="font-bold text-white text-base">Ligatabell</h2>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">Division C</span>
+          </div>
+          <span class="text-xs text-slate-400">Sortert på seire & poeng</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="text-xs text-slate-400 uppercase bg-slate-950/60 border-b border-slate-800">
+              <tr>
+                <th class="py-3 px-3 w-10 text-center">#</th>
+                <th class="py-3 px-3">Lag</th>
+                <th class="py-3 px-2 text-center">K</th>
+                <th class="py-3 px-2 text-center">V</th>
+                <th class="py-3 px-2 text-center">T</th>
+                <th class="py-3 px-2 text-center">Win %</th>
+                <th class="py-3 px-2 text-center">Legs Diff</th>
+                <th class="py-3 px-3 text-center font-bold text-white">Poeng</th>
+              </tr>
+            </thead>
+            <tbody id="standings-table-body" class="divide-y divide-slate-800/60">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Terminliste & Kampresultater -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="font-bold text-white text-base">Terminliste & Kampresultater</h2>
+            <p class="text-xs text-slate-400">Bla mellom rundene for å se kamper og spillesteder</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="round-select" class="text-xs text-slate-400 font-medium">Velg runde:</label>
+            <select id="round-select" onchange="renderScheduleForRound(this.value)" class="bg-slate-950 border border-slate-700 text-sm text-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-emerald-500">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Matches for selected round -->
+        <div id="round-matches-container" class="grid sm:grid-cols-2 gap-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: SISTE RUNDE (RUNDE 12)              -->
+    <!-- ========================================== -->
+    <section id="tab-runde" class="tab-content hidden space-y-6">
+      
+      <!-- Round Hero Header -->
+      <div class="bg-gradient-to-r from-emerald-950/60 via-slate-900 to-slate-900 border border-emerald-900/50 rounded-2xl p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">Siste oppdatering</span>
+              <h2 class="text-xl font-extrabold text-white" id="r-header-title">Runde 12</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-1" id="r-header-sub">Kastet 04.11.26</p>
+          </div>
+          <button onclick="copyWeeklySummary()" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition flex items-center gap-1.5">
+            📋 Del sammendrag
+          </button>
+        </div>
+      </div>
+
+      <!-- Highlights: Improvers / Weekly climbs -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        
+        <!-- 501 Improvers -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <h3 class="font-bold text-sm text-white flex items-center gap-2">
+              <span class="text-emerald-400">📈</span> Ukens klatrere (501 / PPR)
+            </h3>
+            <span class="text-[11px] text-slate-400">Forbedring mot snitt</span>
+          </div>
+          <div class="divide-y divide-slate-800/60 mt-2" id="round-ppr-improvers">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Cricket Improvers -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <h3 class="font-bold text-sm text-white flex items-center gap-2">
+              <span class="text-amber-400">📈</span> Ukens klatrere (Cricket / MPR)
+            </h3>
+            <span class="text-[11px] text-slate-400">Forbedring mot snitt</span>
+          </div>
+          <div class="divide-y divide-slate-800/60 mt-2" id="round-mpr-improvers">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Round Match results -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
+        <h3 class="font-bold text-sm text-white flex items-center gap-2">
+          <span>🎯</span> Kampoppgjør denne runden
+        </h3>
+        <div id="round-latest-matches" class="grid sm:grid-cols-2 gap-3">
+          <!-- Populated -->
+        </div>
+      </div>
+
+      <!-- Best Single Round Performances -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+          <h3 class="font-bold text-sm text-white">Topp 10 prestasjoner denne runden (501 PPR)</h3>
+          <span class="text-xs text-slate-400">Kun kamper kastet i runden</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="text-slate-400 uppercase bg-slate-950/40 text-[11px]">
+              <tr>
+                <th class="py-2 px-3">Spiller</th>
+                <th class="py-2 px-3">Lag</th>
+                <th class="py-2 px-2 text-right">PPR</th>
+                <th class="py-2 px-2 text-center">K</th>
+                <th class="py-2 px-2 text-center">V</th>
+                <th class="py-2 px-2 text-right">Tons (LTon)</th>
+                <th class="py-2 px-2 text-right">HstOut</th>
+              </tr>
+            </thead>
+            <tbody id="round-top-players" class="divide-y divide-slate-800/60">
+              <!-- Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: TOTALSNITT                          -->
+    <!-- ========================================== -->
+    <section id="tab-snitt" class="tab-content hidden space-y-4">
+      
+      <!-- Search, filter and toggle bar -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <!-- Mode Toggle -->
+          <div class="inline-flex p-1 rounded-xl bg-slate-950 border border-slate-800">
+            <button onclick="setSnittMode('ppr')" id="btn-mode-ppr" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-500 text-white transition shadow">
+              501 (PPR)
+            </button>
+            <button onclick="setSnittMode('mpr')" id="btn-mode-mpr" class="px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition">
+              Cricket (MPR)
+            </button>
+          </div>
+
+          <!-- Team Filter -->
+          <div class="flex items-center gap-2">
+            <label for="snitt-team-filter" class="text-xs text-slate-400">Filtrer lag:</label>
+            <select id="snitt-team-filter" onchange="filterPlayersTable()" class="bg-slate-950 border border-slate-700 text-xs sm:text-sm text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-emerald-500">
+              <option value="ALL">Alle lag</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative">
+          <input type="text" id="player-search" oninput="filterPlayersTable()" placeholder="Søk etter spiller eller lag..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 pl-10 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+          <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+
+      <!-- Players Table -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm" id="players-table">
+            <thead class="text-xs text-slate-400 uppercase bg-slate-950/60 border-b border-slate-800" id="players-table-head">
+              <!-- Dynamically set based on PPR or MPR -->
+            </thead>
+            <tbody id="players-table-body" class="divide-y divide-slate-800/60 text-xs sm:text-sm">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: MITT LAG                            -->
+    <!-- ========================================== -->
+    <section id="tab-mittlag" class="tab-content hidden space-y-6">
+      
+      <!-- Team Selector & Banner -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="text-xs text-emerald-400 font-semibold tracking-wide uppercase">Klubb & Lagside</span>
+          <h2 class="text-2xl font-black text-white" id="myteam-title">Darty Nellie</h2>
+          <p class="text-xs text-slate-400 mt-1" id="myteam-meta">Tabellplassering, spillere og kamper</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <label for="select-my-team" class="text-xs text-slate-400 font-medium">Bytt lag:</label>
+          <select id="select-my-team" onchange="changeMyTeam(this.value)" class="bg-slate-950 border border-slate-700 text-sm text-slate-200 rounded-xl px-3 py-2 font-medium focus:outline-none focus:border-emerald-500">
+            <!-- Populated dynamically with all teams -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Team Stats Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Plassering</p>
+          <p class="text-xl font-black text-white" id="myteam-rank">#4</p>
+          <span class="text-[11px] text-slate-500" id="myteam-pts">4 poeng</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Kamper / Seire</p>
+          <p class="text-xl font-black text-emerald-400" id="myteam-record">-</p>
+          <span class="text-[11px] text-slate-500" id="myteam-winpct">-</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Leg-forskjell</p>
+          <p class="text-xl font-black text-amber-400" id="myteam-legdiff">-</p>
+          <span class="text-[11px] text-slate-500">Totalt antall legs</span>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3">
+          <p class="text-xs text-slate-400">Registrerte spillere</p>
+          <p class="text-xl font-black text-cyan-400" id="myteam-players-count">-</p>
+          <span class="text-[11px] text-slate-500">I totalsnitt-listen</span>
+        </div>
+      </div>
+
+      <!-- Team Players -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
+        <h3 class="font-bold text-sm text-white">Lagets spillere & sesongsnitt</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="text-slate-400 uppercase bg-slate-950/40 text-[11px]">
+              <tr>
+                <th class="py-2.5 px-3">Spiller</th>
+                <th class="py-2.5 px-2 text-right">501 PPR</th>
+                <th class="py-2.5 px-2 text-right">Cricket MPR</th>
+                <th class="py-2.5 px-2 text-center">Kamper</th>
+                <th class="py-2.5 px-2 text-center">Vunnet</th>
+                <th class="py-2.5 px-2 text-right">Høyeste Utg.</th>
+                <th class="py-2.5 px-2 text-right">Tons</th>
+              </tr>
+            </thead>
+            <tbody id="myteam-roster" class="divide-y divide-slate-800/60">
+              <!-- Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Team Matches (Past & Upcoming) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
+        <h3 class="font-bold text-sm text-white">Lagets kamper denne sesongen</h3>
+        <div id="myteam-matches" class="grid sm:grid-cols-2 gap-3">
+          <!-- Populated -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: COPY NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <span>✓</span>
+    <span id="toast-text" class="text-xs sm:text-sm font-medium">Kopiert til utklippstavlen!</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>Hedmark C Dart-Hub • Data hentes ukentlig fra Bullshooter.no</p>
+      <p class="text-slate-600">Laget for spillere i Hedmark C</p>
+    </div>
+  </footer>
+
+  <!-- APP SCRIPT & DATA LOADER -->
+  <script src="data.js"></script>
+  <script>
+    let appData = null;
+    let snittMode = 'ppr'; // 'ppr' or 'mpr'
+    let myTeam = localStorage.getItem('hedmark_c_my_team') || 'Darty Nellie';
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
+        el.classList.add('text-slate-400');
+      });
+
+      const activeSection = document.getElementById('tab-' + tabId);
+      if (activeSection) activeSection.classList.remove('hidden');
+
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
+        activeBtn.classList.remove('text-slate-400');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    function copyWeeklySummary() {
+      if (!appData || !appData.weekly_summary) return;
+      navigator.clipboard.writeText(appData.weekly_summary).then(() => {
+        showToast("Ukens sammendrag kopiert! Klar til å limes inn i Messenger/Spond.");
+      }).catch(err => {
+        alert("Kunne ikke kopiere automatisk. Tekst:\n\n" + appData.weekly_summary);
+      });
+    }
+
+    function setSnittMode(mode) {
+      snittMode = mode;
+      const btnP = document.getElementById('btn-mode-ppr');
+      const btnM = document.getElementById('btn-mode-mpr');
+      if (mode === 'ppr') {
+        btnP.className = 'px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-500 text-white transition shadow';
+        btnM.className = 'px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition';
+      } else {
+        btnM.className = 'px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-500 text-white transition shadow';
+        btnP.className = 'px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition';
+      }
+      filterPlayersTable();
+    }
+
+    function changeMyTeam(teamName) {
+      myTeam = teamName;
+      localStorage.setItem('hedmark_c_my_team', teamName);
+      document.getElementById('nav-my-team-name').innerText = teamName;
+      renderMyTeamView();
+    }
+
+    // INITIAL DATA RENDER
+    function renderApp(data) {
+      appData = data;
+
+      // Header info
+      const rNum = data.latest_round ? data.latest_round.number : 12;
+      const rDate = data.latest_round ? data.latest_round.date : '';
+      document.getElementById('header-updated').innerText = `Siste oppdatering: Runde ${rNum} (${rDate})`;
+      document.getElementById('tab-round-num').innerText = rNum;
+      document.getElementById('nav-my-team-name').innerText = myTeam;
+
+      // Highlights
+      if (data.standings && data.standings.length > 0) {
+        document.getElementById('card-leader').innerText = data.standings[0].team;
+        document.getElementById('card-leader-pts').innerText = `${data.standings[0].points} poeng (${data.standings[0].win_pct}% seier)`;
+      }
+      document.getElementById('card-latest-round').innerText = `Runde ${rNum}`;
+      document.getElementById('card-latest-date').innerText = rDate || 'Fullført';
+
+      if (data.players_ppr && data.players_ppr.length > 0) {
+        // filter out substitutes or sort
+        const topPPR = [...data.players_ppr].sort((a,b) => b.ppr - a.ppr)[0];
+        if (topPPR) {
+          document.getElementById('card-top-ppr').innerText = topPPR.player;
+          document.getElementById('card-top-ppr-val').innerText = `${topPPR.ppr} PPR (${topPPR.team})`;
+        }
+        const topOut = [...data.players_ppr].sort((a,b) => b.high_out - a.high_out)[0];
+        if (topOut) {
+          document.getElementById('card-high-out').innerText = `${topOut.high_out} (${topOut.player})`;
+          document.getElementById('card-high-out-val').innerText = topOut.team;
+        }
+      }
+
+      // Populate teams filter & select
+      populateTeams();
+
+      // Render tabell
+      renderStandingsTable();
+
+      // Render schedule
+      renderScheduleDropdown();
+
+      // Render latest round
+      renderLatestRoundView();
+
+      // Render players table
+      filterPlayersTable();
+
+      // Render My Team view
+      renderMyTeamView();
+    }
+
+    function populateTeams() {
+      const teams = appData.standings.map(s => s.team);
+      const teamFilter = document.getElementById('snitt-team-filter');
+      const myTeamSelect = document.getElementById('select-my-team');
+
+      teamFilter.innerHTML = '<option value="ALL">Alle lag</option>';
+      myTeamSelect.innerHTML = '';
+
+      teams.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.innerText = t;
+        teamFilter.appendChild(opt);
+
+        const opt2 = document.createElement('option');
+        opt2.value = t;
+        opt2.innerText = t;
+        if (t === myTeam) opt2.selected = true;
+        myTeamSelect.appendChild(opt2);
+      });
+    }
+
+    function renderStandingsTable() {
+      const tbody = document.getElementById('standings-table-body');
+      tbody.innerHTML = '';
+
+      appData.standings.forEach((s, idx) => {
+        const isMyTeam = s.team === myTeam;
+        const tr = document.createElement('tr');
+        tr.className = `hover:bg-slate-800/40 transition cursor-pointer ${isMyTeam ? 'bg-emerald-500/10 font-medium' : ''}`;
+        tr.onclick = () => { changeMyTeam(s.team); switchTab('mittlag'); };
+
+        let medal = idx + 1;
+        if (idx === 0) medal = '🥇';
+        else if (idx === 1) medal = '🥈';
+        else if (idx === 2) medal = '🥉';
+
+        tr.innerHTML = `
+          <td class="py-3 px-3 text-center text-xs font-bold text-slate-400">${medal}</td>
+          <td class="py-3 px-3 flex items-center gap-2">
+            <span class="font-bold text-slate-100 ${isMyTeam ? 'text-emerald-400' : ''}">${s.team}</span>
+            ${isMyTeam ? '<span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Ditt lag</span>' : ''}
+          </td>
+          <td class="py-3 px-2 text-center text-slate-400">${s.games}</td>
+          <td class="py-3 px-2 text-center text-emerald-400 font-semibold">${s.wins}</td>
+          <td class="py-3 px-2 text-center text-red-400/80">${s.losses}</td>
+          <td class="py-3 px-2 text-center text-slate-300">${s.win_pct}%</td>
+          <td class="py-3 px-2 text-center font-mono ${s.leg_diff.startsWith('+') ? 'text-emerald-400' : (s.leg_diff.startsWith('-') ? 'text-rose-400' : 'text-slate-400')}">${s.leg_diff}</td>
+          <td class="py-3 px-3 text-center font-black text-white text-base">${s.points}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderScheduleDropdown() {
+      const select = document.getElementById('round-select');
+      select.innerHTML = '';
+      const schedule = appData.schedule || [];
+      const latestR = appData.latest_round ? appData.latest_round.number : (schedule.length ? schedule[schedule.length - 1].round : 1);
+
+      schedule.forEach(r => {
+        const opt = document.createElement('option');
+        opt.value = r.round;
+        opt.innerText = `Runde ${r.round} (${r.date})`;
+        if (r.round === latestR) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      renderScheduleForRound(latestR);
+    }
+
+    function renderScheduleForRound(roundNum) {
+      roundNum = parseInt(roundNum);
+      const container = document.getElementById('round-matches-container');
+      container.innerHTML = '';
+
+      const rData = (appData.schedule || []).find(r => r.round === roundNum);
+      if (!rData || !rData.matches || rData.matches.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-500 col-span-2">Ingen kamper registrert for denne runden.</p>';
+        return;
+      }
+
+      rData.matches.forEach(m => {
+        const isMyTeam = m.home === myTeam || m.away === myTeam;
+        const card = document.createElement('div');
+        card.className = `p-3.5 rounded-xl border bg-slate-950/70 ${isMyTeam ? 'border-emerald-500/50 bg-emerald-950/10' : 'border-slate-800'}`;
+
+        let resultBadge = '';
+        if (m.postponed) {
+          resultBadge = '<span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Utsatt</span>';
+        } else if (m.home_legs !== null && m.away_legs !== null) {
+          resultBadge = `<span class="text-sm font-black font-mono px-2 py-0.5 rounded bg-slate-800 text-white">${m.home_legs} - ${m.away_legs}</span>`;
+        } else {
+          resultBadge = `<span class="text-xs text-slate-500">${m.result || 'Ikke spilt'}</span>`;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] text-slate-400 flex items-center gap-1">
+              📍 ${m.venue || 'Bane ukjent'}
+            </span>
+            ${resultBadge}
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center justify-between text-sm">
+              <span class="${m.home === myTeam ? 'text-emerald-400 font-bold' : 'text-slate-200'}">${m.home}</span>
+              <span class="font-mono font-bold ${m.home_legs !== null ? (m.home_legs > m.away_legs ? 'text-emerald-400' : 'text-slate-400') : ''}">${m.home_legs !== null ? m.home_legs : ''}</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="${m.away === myTeam ? 'text-emerald-400 font-bold' : 'text-slate-200'}">${m.away}</span>
+              <span class="font-mono font-bold ${m.away_legs !== null ? (m.away_legs > m.home_legs ? 'text-emerald-400' : 'text-slate-400') : ''}">${m.away_legs !== null ? m.away_legs : ''}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderLatestRoundView() {
+      const lr = appData.latest_round;
+      if (!lr) return;
+
+      document.getElementById('r-header-title').innerText = `Runde ${lr.number || 12}`;
+      document.getElementById('r-header-sub').innerText = `Resultater og prestasjoner for runde ${lr.number || 12} (${lr.date || ''})`;
+
+      // 501 Improvers
+      const pprImpDiv = document.getElementById('round-ppr-improvers');
+      pprImpDiv.innerHTML = '';
+      (lr.ppr_improvers || []).forEach(p => {
+        const row = document.createElement('div');
+        row.className = 'py-2.5 flex items-center justify-between';
+        row.innerHTML = `
+          <div>
+            <p class="font-semibold text-sm text-slate-100">${p.player}</p>
+            <p class="text-xs text-slate-400">${p.team} • Rundesnitt: ${p.round_ppr}</p>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              ▲ +${p.improvement}
+            </span>
+            <p class="text-[10px] text-slate-500 mt-0.5">fra ${p.prev_ppr}</p>
+          </div>
+        `;
+        pprImpDiv.appendChild(row);
+      });
+
+      // Cricket Improvers
+      const mprImpDiv = document.getElementById('round-mpr-improvers');
+      mprImpDiv.innerHTML = '';
+      (lr.mpr_improvers || []).forEach(p => {
+        const row = document.createElement('div');
+        row.className = 'py-2.5 flex items-center justify-between';
+        row.innerHTML = `
+          <div>
+            <p class="font-semibold text-sm text-slate-100">${p.player}</p>
+            <p class="text-xs text-slate-400">${p.team} • Rundesnitt: ${p.round_mpr}</p>
+          </div>
+          <div class="text-right">
+            <span class="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              ▲ +${p.improvement}
+            </span>
+            <p class="text-[10px] text-slate-500 mt-0.5">fra ${p.prev_mpr}</p>
+          </div>
+        `;
+        mprImpDiv.appendChild(row);
+      });
+
+      // Matches for this round
+      const matchesDiv = document.getElementById('round-latest-matches');
+      matchesDiv.innerHTML = '';
+      const rNum = lr.number || 12;
+      const rSched = (appData.schedule || []).find(r => r.round === rNum);
+      if (rSched && rSched.matches) {
+        rSched.matches.forEach(m => {
+          const c = document.createElement('div');
+          c.className = 'p-3 bg-slate-950/70 border border-slate-800 rounded-xl flex items-center justify-between';
+          c.innerHTML = `
+            <div>
+              <p class="text-xs text-slate-400 font-mono">📍 ${m.venue || ''}</p>
+              <p class="text-sm font-semibold text-white mt-1">${m.home} <span class="text-slate-500">vs</span> ${m.away}</p>
+            </div>
+            <div class="text-right">
+              ${m.postponed ? '<span class="text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-300">Utsatt</span>' : 
+                `<span class="text-base font-black font-mono text-emerald-400">${m.home_legs} - ${m.away_legs}</span>`}
+            </div>
+          `;
+          matchesDiv.appendChild(c);
+        });
+      }
+
+      // Top round performers
+      const topRoundBody = document.getElementById('round-top-players');
+      topRoundBody.innerHTML = '';
+      const topPPRRound = [...(lr.round_ppr || [])].sort((a,b) => b.ppr - a.ppr).slice(0, 10);
+      topPPRRound.forEach((p, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/40';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-semibold text-slate-100 flex items-center gap-1.5">
+            <span class="text-xs text-slate-500 w-4">${idx+1}.</span> ${p.player}
+          </td>
+          <td class="py-2.5 px-3 text-slate-400">${p.team}</td>
+          <td class="py-2.5 px-2 text-right font-black text-cyan-400 font-mono">${p.ppr.toFixed(2)}</td>
+          <td class="py-2.5 px-2 text-center text-slate-400">${p.games}</td>
+          <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
+          <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p.lton}</td>
+          <td class="py-2.5 px-2 text-right text-purple-400 font-mono font-bold">${p.high_out || '-'}</td>
+        `;
+        topRoundBody.appendChild(tr);
+      });
+    }
+
+    function filterPlayersTable() {
+      const search = (document.getElementById('player-search').value || '').toLowerCase();
+      const teamFilter = document.getElementById('snitt-team-filter').value;
+      const thead = document.getElementById('players-table-head');
+      const tbody = document.getElementById('players-table-body');
+
+      tbody.innerHTML = '';
+
+      if (snittMode === 'ppr') {
+        thead.innerHTML = `
+          <tr>
+            <th class="py-3 px-3 w-8 text-center">#</th>
+            <th class="py-3 px-3">Spiller</th>
+            <th class="py-3 px-3">Lag</th>
+            <th class="py-3 px-2 text-right font-bold text-emerald-400">PPR</th>
+            <th class="py-3 px-2 text-center">Kamper</th>
+            <th class="py-3 px-2 text-center">Vunnet</th>
+            <th class="py-3 px-2 text-right">Tons (LTon)</th>
+            <th class="py-3 px-2 text-right">Hats</th>
+            <th class="py-3 px-2 text-right">High Ton</th>
+            <th class="py-3 px-2 text-right">180</th>
+            <th class="py-3 px-3 text-right">High Out</th>
+          </tr>
+        `;
+
+        let list = [...(appData.players_ppr || [])];
+        if (teamFilter !== 'ALL') list = list.filter(p => p.team === teamFilter);
+        if (search) list = list.filter(p => p.player.toLowerCase().includes(search) || p.team.toLowerCase().includes(search));
+
+        list.sort((a,b) => b.ppr - a.ppr);
+
+        list.forEach((p, idx) => {
+          const isMy = p.team === myTeam;
+          const tr = document.createElement('tr');
+          tr.className = `hover:bg-slate-800/40 ${isMy ? 'bg-emerald-500/10' : ''}`;
+          tr.innerHTML = `
+            <td class="py-2.5 px-3 text-center text-xs text-slate-500">${idx+1}</td>
+            <td class="py-2.5 px-3 font-semibold ${isMy ? 'text-emerald-400' : 'text-slate-100'}">${p.player}</td>
+            <td class="py-2.5 px-3 text-slate-400 text-xs">${p.team}</td>
+            <td class="py-2.5 px-2 text-right font-black font-mono text-cyan-400 text-sm">${p.ppr.toFixed(2)}</td>
+            <td class="py-2.5 px-2 text-center text-slate-300 font-mono">${p.games}</td>
+            <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold font-mono">${p.wins}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p.lton}</td>
+            <td class="py-2.5 px-2 text-right text-amber-400 font-mono">${p.hats}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p.hton}</td>
+            <td class="py-2.5 px-2 text-right text-rose-400 font-mono font-bold">${p.ton80 || 0}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold text-purple-400">${p.high_out || '-'}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+      } else {
+        // Cricket MPR
+        thead.innerHTML = `
+          <tr>
+            <th class="py-3 px-3 w-8 text-center">#</th>
+            <th class="py-3 px-3">Spiller</th>
+            <th class="py-3 px-3">Lag</th>
+            <th class="py-3 px-2 text-right font-bold text-amber-400">MPR</th>
+            <th class="py-3 px-2 text-center">Kamper</th>
+            <th class="py-3 px-2 text-center">Vunnet</th>
+            <th class="py-3 px-2 text-right">5MR</th>
+            <th class="py-3 px-2 text-right">6MR</th>
+            <th class="py-3 px-2 text-right">7MR</th>
+            <th class="py-3 px-2 text-right">8MR</th>
+            <th class="py-3 px-2 text-right">9MR</th>
+            <th class="py-3 px-3 text-right">Hat</th>
+          </tr>
+        `;
+
+        let list = [...(appData.players_mpr || [])];
+        if (teamFilter !== 'ALL') list = list.filter(p => p.team === teamFilter);
+        if (search) list = list.filter(p => p.player.toLowerCase().includes(search) || p.team.toLowerCase().includes(search));
+
+        list.sort((a,b) => b.mpr - a.mpr);
+
+        list.forEach((p, idx) => {
+          const isMy = p.team === myTeam;
+          const tr = document.createElement('tr');
+          tr.className = `hover:bg-slate-800/40 ${isMy ? 'bg-emerald-500/10' : ''}`;
+          tr.innerHTML = `
+            <td class="py-2.5 px-3 text-center text-xs text-slate-500">${idx+1}</td>
+            <td class="py-2.5 px-3 font-semibold ${isMy ? 'text-emerald-400' : 'text-slate-100'}">${p.player}</td>
+            <td class="py-2.5 px-3 text-slate-400 text-xs">${p.team}</td>
+            <td class="py-2.5 px-2 text-right font-black font-mono text-amber-400 text-sm">${p.mpr.toFixed(2)}</td>
+            <td class="py-2.5 px-2 text-center text-slate-300 font-mono">${p.games}</td>
+            <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold font-mono">${p.wins}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p['5mr']}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p['6mr']}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p['7mr']}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300 font-mono">${p['8mr']}</td>
+            <td class="py-2.5 px-2 text-right text-rose-400 font-mono font-bold">${p['9mr']}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold text-amber-400">${p.hat}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+
+    function renderMyTeamView() {
+      document.getElementById('myteam-title').innerText = myTeam;
+      
+      const s = (appData.standings || []).find(x => x.team === myTeam);
+      const sIdx = (appData.standings || []).findIndex(x => x.team === myTeam);
+      
+      if (s) {
+        document.getElementById('myteam-rank').innerText = `#${sIdx + 1} av ${appData.standings.length}`;
+        document.getElementById('myteam-pts').innerText = `${s.points} poeng`;
+        document.getElementById('myteam-record').innerText = `${s.wins}V - ${s.losses}T`;
+        document.getElementById('myteam-winpct').innerText = `${s.win_pct}% seier (${s.games} spilte kamper)`;
+        document.getElementById('myteam-legdiff').innerText = `${s.leg_diff}`;
+      }
+
+      // Roster
+      const rosterTbody = document.getElementById('myteam-roster');
+      rosterTbody.innerHTML = '';
+      
+      const teamPPR = (appData.players_ppr || []).filter(p => p.team === myTeam);
+      const teamMPR = (appData.players_mpr || []).filter(p => p.team === myTeam);
+      document.getElementById('myteam-players-count').innerText = `${teamPPR.length} spillere`;
+
+      teamPPR.sort((a,b) => b.ppr - a.ppr);
+
+      teamPPR.forEach(p => {
+        const mprMatch = teamMPR.find(m => m.player === p.player);
+        const mprVal = mprMatch ? mprMatch.mpr.toFixed(2) : '-';
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/40';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-semibold text-slate-100">${p.player}</td>
+          <td class="py-2.5 px-2 text-right font-mono font-bold text-cyan-400">${p.ppr.toFixed(2)}</td>
+          <td class="py-2.5 px-2 text-right font-mono font-bold text-amber-400">${mprVal}</td>
+          <td class="py-2.5 px-2 text-center font-mono text-slate-300">${p.games}</td>
+          <td class="py-2.5 px-2 text-center font-mono text-emerald-400 font-semibold">${p.wins}</td>
+          <td class="py-2.5 px-2 text-right font-mono text-purple-400 font-bold">${p.high_out || '-'}</td>
+          <td class="py-2.5 px-2 text-right font-mono text-slate-300">${p.lton}</td>
+        `;
+        rosterTbody.appendChild(tr);
+      });
+
+      // Matches for my team
+      const matchesDiv = document.getElementById('myteam-matches');
+      matchesDiv.innerHTML = '';
+      
+      (appData.schedule || []).forEach(r => {
+        (r.matches || []).forEach(m => {
+          if (m.home === myTeam || m.away === myTeam) {
+            const isHome = m.home === myTeam;
+            const opp = isHome ? m.away : m.home;
+            const isWin = isHome ? (m.home_legs > m.away_legs) : (m.away_legs > m.home_legs);
+            const isLoss = isHome ? (m.home_legs < m.away_legs) : (m.away_legs < m.home_legs);
+
+            let statusBadge = '';
+            if (m.postponed) {
+              statusBadge = '<span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Utsatt</span>';
+            } else if (m.home_legs !== null) {
+              const resText = `${m.home_legs} - ${m.away_legs}`;
+              if (isWin) {
+                statusBadge = `<span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Seier (${resText})</span>`;
+              } else if (isLoss) {
+                statusBadge = `<span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">Tap (${resText})</span>`;
+              } else {
+                statusBadge = `<span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">${resText}</span>`;
+              }
+            } else {
+              statusBadge = '<span class="text-xs text-slate-500">Kommende</span>';
+            }
+
+            const c = document.createElement('div');
+            c.className = 'p-3 bg-slate-950/70 border border-slate-800 rounded-xl space-y-1.5';
+            c.innerHTML = `
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-slate-400">Runde ${r.round} • ${r.date}</span>
+                ${statusBadge}
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="font-medium text-slate-200">${isHome ? 'Hjemme mot ' : 'Borte mot '}<strong class="text-white">${opp}</strong></span>
+              </div>
+              <p class="text-[11px] text-slate-500">📍 ${m.venue || 'Bane ikke oppgitt'}</p>
+            `;
+            matchesDiv.appendChild(c);
+          }
+        });
+      });
+    }
+
+    // LOAD DATA FROM JSON
+    fetch('data.json')
+      .then(res => {
+        if (!res.ok) throw new Error("HTTP error " + res.status);
+        return res.json();
+      })
+      .then(data => {
+        renderApp(data);
+      })
+      .catch(err => {
+        console.warn("Could not load data.json via fetch, trying fallback...", err);
+        // Fallback for local file opening if browser blocks fetch
+        if (window.EMBEDDED_DATA) {
+          renderApp(window.EMBEDDED_DATA);
+        } else {
+          document.getElementById('header-updated').innerText = "Datafil må åpnes via en lokal webserver (f.eks. npx serve eller python -m http.server), eller hostes på GitHub Pages.";
+        }
+      });
+  </script>
+</body>
+</html>
