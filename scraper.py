@@ -23,9 +23,7 @@ def parse_category_page(html):
     soup = BeautifulSoup(html, "html.parser")
     tabell_url = None
     totalsnitt_url = None
-    latest_round_url = None
-    latest_round_num = 0
-    latest_round_date = ""
+    all_rounds_links = {}
 
     for a in soup.find_all("a", href=True):
         href = a['href']
@@ -42,19 +40,26 @@ def parse_category_page(html):
             m = re.search(r'runde[- ](\d+)', combined)
             if m:
                 r_num = int(m.group(1))
-                if r_num > latest_round_num:
-                    latest_round_num = r_num
-                    latest_round_url = full_href
-                    dm = re.search(r'(\d{2}\.\d{2}\.\d{2})', text)
-                    if dm:
-                        latest_round_date = dm.group(1)
+                dm = re.search(r'(\d{2}\.\d{2}\.\d{2})', text)
+                r_date = dm.group(1) if dm else ""
+                if r_num not in all_rounds_links:
+                    all_rounds_links[r_num] = {
+                        "number": r_num,
+                        "url": full_href,
+                        "date": r_date
+                    }
+
+    latest_round_num = max(all_rounds_links.keys()) if all_rounds_links else 0
+    latest_round_url = all_rounds_links[latest_round_num]["url"] if latest_round_num else None
+    latest_round_date = all_rounds_links[latest_round_num]["date"] if latest_round_num else ""
 
     return {
         "tabell_url": tabell_url,
         "totalsnitt_url": totalsnitt_url,
         "latest_round_url": latest_round_url,
         "latest_round_num": latest_round_num,
-        "latest_round_date": latest_round_date
+        "latest_round_date": latest_round_date,
+        "all_rounds_links": all_rounds_links
     }
 
 def parse_tabell_page(html):
@@ -79,7 +84,7 @@ def parse_tabell_page(html):
                         "leg_diff": cells[5],
                         "points": int(cells[6])
                     })
-                except Exception as e:
+                except Exception:
                     pass
 
     if len(tables) >= 2:
@@ -93,7 +98,6 @@ def parse_tabell_page(html):
             if not cells or len(cells) < 6:
                 continue
 
-            # Check if this row introduces a new round
             if cells[0] and cells[0].isdigit():
                 current_round = int(cells[0])
                 current_date = cells[1]
@@ -105,7 +109,6 @@ def parse_tabell_page(html):
                     }
                 continue
 
-            # Match row
             home = cells[2]
             away = cells[3]
             venue = cells[4]
@@ -142,7 +145,6 @@ def parse_totalsnitt_page(html):
     mpr_stats = []
 
     if len(tables) >= 1:
-        # Table 0: PPR (501)
         rows = tables[0].find_all("tr")
         for row in rows[1:]:
             cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
@@ -164,7 +166,6 @@ def parse_totalsnitt_page(html):
                     pass
 
     if len(tables) >= 2:
-        # Table 1: MPR (Cricket)
         rows = tables[1].find_all("tr")
         for row in rows[1:]:
             cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
@@ -287,7 +288,6 @@ def generate_weekly_summary(data):
     r_num = latest_r.get("number", "?")
     r_date = latest_r.get("date", "")
     
-    # Matches from schedule for this round
     schedule = data.get("schedule", [])
     matches_text = []
     for r in schedule:
@@ -300,14 +300,12 @@ def generate_weekly_summary(data):
                 else:
                     matches_text.append(f"• {m['home']} vs {m['away']} ({m['venue']})")
 
-    # Top improvers
     impr_ppr = latest_r.get("ppr_improvers", [])
     top_ppr_impr = f"{impr_ppr[0]['player']} ({impr_ppr[0]['team']}): +{impr_ppr[0]['improvement']} (snitt: {impr_ppr[0]['round_ppr']})" if impr_ppr else "Ingen data"
     
     impr_mpr = latest_r.get("mpr_improvers", [])
     top_mpr_impr = f"{impr_mpr[0]['player']} ({impr_mpr[0]['team']}): +{impr_mpr[0]['improvement']} (snitt: {impr_mpr[0]['round_mpr']})" if impr_mpr else "Ingen data"
 
-    # Best round score
     r_ppr = sorted(latest_r.get("round_ppr", []), key=lambda x: x["ppr"], reverse=True)
     best_ppr = f"{r_ppr[0]['player']} ({r_ppr[0]['team']}) - {r_ppr[0]['ppr']} PPR" if r_ppr else "Ingen data"
 
@@ -318,15 +316,15 @@ def generate_weekly_summary(data):
     leader = standings[0]["team"] if standings else "Ukjent"
 
     summary = (
-        f"🎯 E-DART HEDMARK C – RUNDE {r_num} ({r_date})\n\n"
-        f"🏆 KAMPRESULTATER:\n" + ("\n".join(matches_text) if matches_text else "Ingen kampdata registrert") + "\n\n"
-        f"⭐ UKENS KLATRERE:\n"
+        f"E-DART HEDMARK C – RUNDE {r_num} ({r_date})\n\n"
+        f"KAMPRESULTATER:\n" + ("\n".join(matches_text) if matches_text else "Ingen kampdata registrert") + "\n\n"
+        f"UKENS KLATRERE:\n"
         f"• 501: {top_ppr_impr}\n"
         f"• Cricket: {top_mpr_impr}\n\n"
-        f"🔥 UKENS BESTE ENKELTRUNDER:\n"
+        f"UKENS BESTE ENKELTRUNDER:\n"
         f"• Høyest 501: {best_ppr}\n"
         f"• Høyest Cricket: {best_mpr}\n\n"
-        f"📊 TABELLTOPPEN: {leader} leder ligaen med {standings[0]['points'] if standings else 0} poeng.\n\n"
+        f"TABELLTOPPEN: {leader} leder ligaen med {standings[0]['points'] if standings else 0} poeng.\n\n"
         f"Se full tabell og alle spillersnitt i dashboardet!"
     )
     return summary
@@ -337,8 +335,7 @@ def send_ntfy(summary, topic, title=None, click_url=None):
     url = f"https://ntfy.sh/{topic}"
     headers = {
         "Title": title.encode('utf-8') if title else b"E-Dart Hedmark C Oppdatert",
-        "Priority": "default",
-        "Tags": "dart,trophy"
+        "Priority": "default"
     }
     if click_url:
         headers["Click"] = click_url
@@ -354,7 +351,18 @@ def main():
     print("Scraping category page...")
     cat_html = fetch_html(CATEGORY_URL)
     cat_info = parse_category_page(cat_html)
-    print("Category links:", cat_info)
+    print("Category info:", {k: v for k, v in cat_info.items() if k != "all_rounds_links"})
+
+    output_path = os.path.join(os.path.dirname(__file__), "data.json")
+    prev_data = {}
+    if os.path.exists(output_path):
+        try:
+            with open(output_path, "r", encoding="utf-8") as prev_f:
+                prev_data = json.load(prev_f)
+        except Exception:
+            pass
+
+    existing_rounds = prev_data.get("all_rounds", {})
 
     if not cat_info["tabell_url"]:
         print("Error: Could not find tabell URL")
@@ -364,23 +372,36 @@ def main():
     tabell_html = fetch_html(cat_info["tabell_url"])
     standings, schedule = parse_tabell_page(tabell_html)
 
-    print(f"Standings count: {len(standings)}, Schedule rounds: {len(schedule)}")
-
     ppr_stats = []
     mpr_stats = []
     if cat_info["totalsnitt_url"]:
         print("Fetching totalsnitt...")
         snitt_html = fetch_html(cat_info["totalsnitt_url"])
         ppr_stats, mpr_stats = parse_totalsnitt_page(snitt_html)
-        print(f"PPR players: {len(ppr_stats)}, MPR players: {len(mpr_stats)}")
 
-    round_data = {}
-    if cat_info["latest_round_url"]:
-        print(f"Fetching latest round ({cat_info['latest_round_num']})...")
-        r_html = fetch_html(cat_info["latest_round_url"])
-        round_data = parse_round_page(r_html)
-        round_data["number"] = cat_info["latest_round_num"]
-        round_data["date"] = cat_info["latest_round_date"]
+    # Scrape all rounds (cached if already scraped, except latest round)
+    all_rounds_links = cat_info.get("all_rounds_links", {})
+    latest_r_num = cat_info["latest_round_num"]
+    all_rounds_data = {}
+
+    for r_num, info in sorted(all_rounds_links.items()):
+        str_r = str(r_num)
+        # If we already have this round in cache and it is not the latest round, reuse it!
+        if str_r in existing_rounds and r_num != latest_r_num:
+            all_rounds_data[str_r] = existing_rounds[str_r]
+            print(f"Runde {r_num}: cached")
+        else:
+            print(f"Fetching Runde {r_num} ({info['url']})...")
+            try:
+                r_html = fetch_html(info["url"])
+                parsed_r = parse_round_page(r_html)
+                parsed_r["number"] = r_num
+                parsed_r["date"] = info["date"]
+                all_rounds_data[str_r] = parsed_r
+            except Exception as e:
+                print(f"Error fetching round {r_num}: {e}")
+
+    latest_round_data = all_rounds_data.get(str(latest_r_num), {})
 
     data = {
         "updated_at": cat_info["latest_round_date"] or "Ukjent",
@@ -388,29 +409,21 @@ def main():
         "schedule": schedule,
         "players_ppr": ppr_stats,
         "players_mpr": mpr_stats,
-        "latest_round": round_data
+        "latest_round": latest_round_data,
+        "all_rounds": all_rounds_data
     }
 
     weekly_summary = generate_weekly_summary(data)
     data["weekly_summary"] = weekly_summary
 
-    output_path = os.path.join(os.path.dirname(__file__), "data.json")
-    
-    # Check if there is new data compared to previous data.json
+    # Check for changes
     has_changes = True
-    prev_latest_round = 0
-    if os.path.exists(output_path):
-        try:
-            with open(output_path, "r", encoding="utf-8") as prev_f:
-                prev_data = json.load(prev_f)
-                prev_latest_round = prev_data.get("latest_round", {}).get("number", 0)
-                # If round number is the same and standings are identical, no new data
-                if (prev_latest_round == round_data.get("number") and 
-                    prev_data.get("standings") == standings and
-                    prev_data.get("latest_round") == round_data):
-                    has_changes = False
-        except Exception:
-            pass
+    if prev_data:
+        prev_r = prev_data.get("latest_round", {}).get("number", 0)
+        if (prev_r == latest_r_num and 
+            prev_data.get("standings") == standings and
+            prev_data.get("latest_round") == latest_round_data):
+            has_changes = False
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -434,7 +447,7 @@ def main():
         if has_changes or force_notify:
             print("New round/data detected! Sending ntfy notification...")
             gh_pages_url = os.environ.get("GH_PAGES_URL", "")
-            send_ntfy(weekly_summary, ntfy_topic, title=f"🎯 Hedmark C: Runde {cat_info['latest_round_num']} er publisert!", click_url=gh_pages_url)
+            send_ntfy(weekly_summary, ntfy_topic, title=f"Hedmark C: Runde {cat_info['latest_round_num']} er publisert!", click_url=gh_pages_url)
         else:
             print("No new round data detected since last scrape, skipping ntfy.")
 
