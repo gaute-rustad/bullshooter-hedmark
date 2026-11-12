@@ -1286,8 +1286,8 @@
       return (str || '').replace(/'/g, "\\'");
     }
 
-    // DATA LASTING
-    fetch('data.json')
+    // DATA LASTING (med cache-busting så nettleseren alltid henter ferske tall)
+    fetch('data.json?t=' + Date.now())
       .then(res => {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
