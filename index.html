@@ -34,25 +34,21 @@
     .player-link:hover { text-decoration-color: #10b981; color: #10b981; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased overflow-x-hidden">
 
   <!-- TOP HEADER -->
   <header class="border-b border-slate-800 bg-slate-900/90 sticky top-0 z-40 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
-      <div>
-        <div class="flex items-center gap-2.5">
+      <div class="min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
           <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Hedmark C</h1>
-          <span class="text-[11px] font-medium uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Bullshooter E-Dart</span>
+          <span class="text-[10px] sm:text-[11px] font-medium uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 whitespace-nowrap">Bullshooter E-Dart</span>
         </div>
-        <p class="text-xs text-slate-400 mt-0.5" id="header-updated">Laster data...</p>
+        <p class="text-xs text-slate-400 mt-0.5 truncate" id="header-updated">Laster data...</p>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button id="btn-copy-summary" onclick="copyWeeklySummary()" class="text-xs font-medium px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5 active:bg-slate-600">
-          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-          <span>Kopier sammendrag</span>
-        </button>
+      <div class="flex items-center shrink-0">
         <a href="https://bullshooter.no/index.php/liga/ligaspill-hedmark/hedmark-c" target="_blank" rel="noopener" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 transition">
           Kilde
         </a>
@@ -353,7 +349,7 @@
                 <th class="py-2.5 px-2 text-center">Kamper</th>
                 <th class="py-2.5 px-2 text-center">Utganger</th>
                 <th class="py-2.5 px-2 text-right">High Out</th>
-                <th class="py-2.5 px-3 text-right">Tons (LTon)</th>
+                <th class="py-2.5 px-3 text-right">L-Ton</th>
               </tr>
             </thead>
             <tbody id="lag-roster" class="divide-y divide-slate-800/60 font-mono text-xs sm:text-sm">
@@ -477,9 +473,15 @@
 
   <!-- FOOTER -->
   <footer class="border-t border-slate-800/80 py-5 text-center text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p>Hedmark C Dartliga • Bullshooter E-Dart</p>
-      <p class="text-slate-600">Kildedata hentes ukentlig fra bullshooter.no</p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <p class="text-slate-600">Kildedata hentes ukentlig fra bullshooter.no</p>
+        <button id="btn-copy-summary" onclick="copyWeeklySummary()" class="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition flex items-center gap-1.5 active:bg-slate-700">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+          <span>Kopier sammendrag</span>
+        </button>
+      </div>
     </div>
   </footer>
 
@@ -831,7 +833,8 @@
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
-            <th class="py-2.5 px-2 text-right font-sans">Tons</th>
+            <th class="py-2.5 px-2 text-right font-sans">L-Ton</th>
+            <th class="py-2.5 px-2 text-right font-sans">H-Ton</th>
             <th class="py-2.5 px-2 text-right font-sans">Hats</th>
             <th class="py-2.5 px-3 text-right font-sans">High Out</th>
           </tr>
@@ -839,7 +842,7 @@
 
         const list = [...(rData.round_ppr || [])].sort((a,b) => b.ppr - a.ppr);
         if (list.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="8" class="py-4 text-center text-xs text-slate-500">Ingen X01-tall registrert for denne runden.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="9" class="py-4 text-center text-xs text-slate-500">Ingen X01-tall registrert for denne runden.</td></tr>';
           return;
         }
 
@@ -856,6 +859,7 @@
             <td class="py-2.5 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
             <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.lton}</td>
+            <td class="py-2.5 px-2 text-right text-slate-300">${p.hton}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.hats}</td>
             <td class="py-2.5 px-3 text-right font-semibold text-slate-200">${p.high_out || '-'}</td>
           `;
@@ -975,11 +979,11 @@
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
-            <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
+            <th class="py-2.5 px-2 text-center font-sans">Leg</th>
             <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
-            <th class="py-2.5 px-2 text-right font-sans">Tons</th>
+            <th class="py-2.5 px-2 text-right font-sans">L-Ton</th>
+            <th class="py-2.5 px-2 text-right font-sans">H-Ton</th>
             <th class="py-2.5 px-2 text-right font-sans">Hats</th>
-            <th class="py-2.5 px-2 text-right font-sans">High Ton</th>
             <th class="py-2.5 px-2 text-right font-sans">180</th>
             <th class="py-2.5 px-3 text-right font-sans">High Out</th>
           </tr>
@@ -1005,8 +1009,8 @@
             <td class="py-2 px-2 text-center text-slate-400">${p.games}</td>
             <td class="py-2 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.lton}</td>
-            <td class="py-2 px-2 text-right text-slate-300">${p.hats}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.hton}</td>
+            <td class="py-2 px-2 text-right text-slate-300">${p.hats}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.ton80 || 0}</td>
             <td class="py-2 px-3 text-right font-semibold text-slate-200">${p.high_out || '-'}</td>
           `;
@@ -1020,7 +1024,7 @@
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">MPR</th>
-            <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
+            <th class="py-2.5 px-2 text-center font-sans">Leg</th>
             <th class="py-2.5 px-2 text-right font-sans">5MR</th>
             <th class="py-2.5 px-2 text-right font-sans">6MR</th>
             <th class="py-2.5 px-2 text-right font-sans">7MR</th>
@@ -1097,6 +1101,7 @@
       teamPPR.forEach(p => {
         const mprMatch = teamMPR.find(m => m.player === p.player);
         const mprVal = mprMatch ? mprMatch.mpr.toFixed(2) : '-';
+        const matchesPlayed = Number((p.games / 4).toFixed(1));
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-800/40 transition';
         tr.innerHTML = `
@@ -1105,7 +1110,7 @@
           </td>
           <td class="py-2.5 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
           <td class="py-2.5 px-2 text-right font-bold text-white">${mprVal}</td>
-          <td class="py-2.5 px-2 text-center text-slate-400">${p.games}</td>
+          <td class="py-2.5 px-2 text-center text-slate-400">${matchesPlayed}</td>
           <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
           <td class="py-2.5 px-2 text-right text-slate-200">${p.high_out || '-'}</td>
           <td class="py-2.5 px-3 text-right text-slate-300">${p.lton}</td>
