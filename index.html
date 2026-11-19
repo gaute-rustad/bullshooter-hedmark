@@ -180,10 +180,10 @@
             <p class="text-xs text-slate-400">Klikk på en spiller for å åpne spillerprofil</p>
           </div>
 
-          <!-- 501 / Cricket toggle for runden -->
+          <!-- X01 / Cricket toggle for runden -->
           <div class="inline-flex rounded-md bg-slate-950 border border-slate-800 p-0.5 text-xs font-medium">
             <button onclick="setRoundMode('ppr')" id="btn-round-mode-ppr" class="px-3 py-1.5 rounded text-white bg-slate-800 transition">
-              501 (PPR)
+              X01 (PPR)
             </button>
             <button onclick="setRoundMode('mpr')" id="btn-round-mode-mpr" class="px-3 py-1.5 rounded text-slate-400 hover:text-white transition">
               Cricket (MPR)
@@ -194,7 +194,7 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm" id="round-players-table">
             <thead class="text-xs text-slate-400 uppercase bg-slate-950/70 border-b border-slate-800 tracking-wider font-semibold" id="round-players-thead">
-              <!-- Dynamiske kolonner basert på 501 eller Cricket -->
+              <!-- Dynamiske kolonner basert på X01 eller Cricket -->
             </thead>
             <tbody id="round-players-tbody" class="divide-y divide-slate-800/60 font-mono text-xs sm:text-sm">
               <!-- Renderes dynamisk -->
@@ -206,10 +206,10 @@
       <!-- 3. UKENS KLATRERE (FORBEDRING MOT TIDLIGERE SNITT) -->
       <div class="grid sm:grid-cols-2 gap-4">
         
-        <!-- 501 Klatrere -->
+        <!-- X01 Klatrere -->
         <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm">
           <div class="pb-2 mb-2 border-b border-slate-800 flex items-center justify-between">
-            <h3 class="font-semibold text-xs sm:text-sm text-white">Størst forbedring – 501 (PPR)</h3>
+            <h3 class="font-semibold text-xs sm:text-sm text-white">Størst forbedring – X01 (PPR)</h3>
             <span class="text-[11px] text-slate-400">Mot sesongsnitt</span>
           </div>
           <div class="divide-y divide-slate-800/60" id="runder-improvers-ppr">
@@ -241,10 +241,10 @@
       <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3 shadow-sm">
         <div class="flex flex-wrap items-center justify-between gap-3">
           
-          <!-- Spillmodus 501 / Cricket -->
+          <!-- Spillmodus X01 / Cricket -->
           <div class="inline-flex rounded-md bg-slate-950 border border-slate-800 p-0.5 text-xs font-medium">
             <button onclick="setTotalsnittMode('ppr')" id="btn-totalsnitt-ppr" class="px-3.5 py-1.5 rounded text-white bg-slate-800 font-semibold transition">
-              501 (PPR)
+              X01 (PPR)
             </button>
             <button onclick="setTotalsnittMode('mpr')" id="btn-totalsnitt-mpr" class="px-3.5 py-1.5 rounded text-slate-400 hover:text-white transition">
               Cricket (MPR)
@@ -348,10 +348,10 @@
             <thead class="text-xs text-slate-400 uppercase bg-slate-950/70 border-b border-slate-800 tracking-wider font-semibold">
               <tr>
                 <th class="py-2.5 px-3">Spiller</th>
-                <th class="py-2.5 px-2 text-right">501 PPR</th>
+                <th class="py-2.5 px-2 text-right">X01 PPR</th>
                 <th class="py-2.5 px-2 text-right">Cricket MPR</th>
                 <th class="py-2.5 px-2 text-center">Kamper</th>
-                <th class="py-2.5 px-2 text-center">Vunnet</th>
+                <th class="py-2.5 px-2 text-center">Utganger</th>
                 <th class="py-2.5 px-2 text-right">High Out</th>
                 <th class="py-2.5 px-3 text-right">Tons (LTon)</th>
               </tr>
@@ -404,7 +404,7 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
             
             <div class="bg-slate-950/70 border border-slate-800 rounded-lg p-2.5">
-              <span class="text-[11px] text-slate-400">501 Snitt (PPR)</span>
+              <span class="text-[11px] text-slate-400">X01 Snitt (PPR)</span>
               <p class="text-base sm:text-lg font-bold text-white font-mono mt-0.5" id="modal-stat-ppr">-</p>
               <span class="text-[10px] text-slate-500" id="modal-stat-ppr-games">-</span>
             </div>
@@ -443,10 +443,10 @@
                 <thead class="bg-slate-950/90 text-slate-400 uppercase text-[11px] tracking-wider border-b border-slate-800 font-semibold">
                   <tr>
                     <th class="py-2.5 px-3">Runde</th>
-                    <th class="py-2.5 px-2 text-right">501 PPR</th>
-                    <th class="py-2.5 px-2 text-center">501 K (V)</th>
+                    <th class="py-2.5 px-2 text-right">X01 PPR</th>
+                    <th class="py-2.5 px-2 text-center">X01 Utg. (K)</th>
                     <th class="py-2.5 px-2 text-right">Cricket MPR</th>
-                    <th class="py-2.5 px-2 text-center">Cricket K (V)</th>
+                    <th class="py-2.5 px-2 text-center">Cricket K</th>
                     <th class="py-2.5 px-3 text-right">Høydepunkter</th>
                   </tr>
                 </thead>
@@ -830,8 +830,7 @@
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
-            <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
-            <th class="py-2.5 px-2 text-center font-sans">Vunnet</th>
+            <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
             <th class="py-2.5 px-2 text-right font-sans">Tons</th>
             <th class="py-2.5 px-2 text-right font-sans">Hats</th>
             <th class="py-2.5 px-3 text-right font-sans">High Out</th>
@@ -840,7 +839,7 @@
 
         const list = [...(rData.round_ppr || [])].sort((a,b) => b.ppr - a.ppr);
         if (list.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="9" class="py-4 text-center text-xs text-slate-500">Ingen 501-tall registrert for denne runden.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="8" class="py-4 text-center text-xs text-slate-500">Ingen X01-tall registrert for denne runden.</td></tr>';
           return;
         }
 
@@ -855,7 +854,6 @@
             </td>
             <td class="py-2.5 px-3 font-sans text-xs text-slate-400">${p.team}</td>
             <td class="py-2.5 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
-            <td class="py-2.5 px-2 text-center text-slate-400">${p.games}</td>
             <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.lton}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.hats}</td>
@@ -871,8 +869,6 @@
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">MPR</th>
-            <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
-            <th class="py-2.5 px-2 text-center font-sans">Vunnet</th>
             <th class="py-2.5 px-2 text-right font-sans">5MR</th>
             <th class="py-2.5 px-2 text-right font-sans">6MR</th>
             <th class="py-2.5 px-2 text-right font-sans">7MR</th>
@@ -884,7 +880,7 @@
 
         const list = [...(rData.round_mpr || [])].sort((a,b) => b.mpr - a.mpr);
         if (list.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="12" class="py-4 text-center text-xs text-slate-500">Ingen Cricket-tall registrert for denne runden.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="10" class="py-4 text-center text-xs text-slate-500">Ingen Cricket-tall registrert for denne runden.</td></tr>';
           return;
         }
 
@@ -899,8 +895,6 @@
             </td>
             <td class="py-2.5 px-3 font-sans text-xs text-slate-400">${p.team}</td>
             <td class="py-2.5 px-2 text-right font-bold text-white">${p.mpr.toFixed(2)}</td>
-            <td class="py-2.5 px-2 text-center text-slate-400">${p.games}</td>
-            <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p['5mr']}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p['6mr']}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p['7mr']}</td>
@@ -982,7 +976,7 @@
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
-            <th class="py-2.5 px-2 text-center font-sans">Vunnet</th>
+            <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
             <th class="py-2.5 px-2 text-right font-sans">Tons</th>
             <th class="py-2.5 px-2 text-right font-sans">Hats</th>
             <th class="py-2.5 px-2 text-right font-sans">High Ton</th>
@@ -1027,7 +1021,6 @@
             <th class="py-2.5 px-3 font-sans">Lag</th>
             <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">MPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Kamper</th>
-            <th class="py-2.5 px-2 text-center font-sans">Vunnet</th>
             <th class="py-2.5 px-2 text-right font-sans">5MR</th>
             <th class="py-2.5 px-2 text-right font-sans">6MR</th>
             <th class="py-2.5 px-2 text-right font-sans">7MR</th>
@@ -1055,7 +1048,6 @@
             <td class="py-2 px-3 font-sans text-xs text-slate-400">${p.team}</td>
             <td class="py-2 px-2 text-right font-bold text-white">${p.mpr.toFixed(2)}</td>
             <td class="py-2 px-2 text-center text-slate-400">${p.games}</td>
-            <td class="py-2 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p['5mr']}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p['6mr']}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p['7mr']}</td>
@@ -1185,16 +1177,16 @@
       if (isFavTeam) favBadge.classList.remove('hidden');
       else favBadge.classList.add('hidden');
 
-      // Totalsnitt 501
+      // Totalsnitt X01
       if (pprStat) {
         document.getElementById('modal-stat-ppr').innerText = pprStat.ppr.toFixed(2);
-        document.getElementById('modal-stat-ppr-games').innerText = `${pprStat.wins} vinn / ${pprStat.games} k`;
+        document.getElementById('modal-stat-ppr-games').innerText = `${pprStat.wins} utg. / ${pprStat.games} k`;
         document.getElementById('modal-stat-highout').innerText = pprStat.high_out || '-';
         document.getElementById('modal-stat-tons').innerText = `${pprStat.lton} / ${pprStat.hats}`;
         document.getElementById('modal-stat-hats').innerText = `${pprStat.hton} HTon, ${pprStat.ton80 || 0} Ton80`;
       } else {
         document.getElementById('modal-stat-ppr').innerText = '-';
-        document.getElementById('modal-stat-ppr-games').innerText = 'Ingen 501 data';
+        document.getElementById('modal-stat-ppr-games').innerText = 'Ingen X01 data';
         document.getElementById('modal-stat-highout').innerText = '-';
         document.getElementById('modal-stat-tons').innerText = '-';
         document.getElementById('modal-stat-hats').innerText = '-';
@@ -1203,7 +1195,7 @@
       // Totalsnitt Cricket
       if (mprStat) {
         document.getElementById('modal-stat-mpr').innerText = mprStat.mpr.toFixed(2);
-        document.getElementById('modal-stat-mpr-games').innerText = `${mprStat.wins} vinn / ${mprStat.games} k`;
+        document.getElementById('modal-stat-mpr-games').innerText = `${mprStat.games} k`;
       } else {
         document.getElementById('modal-stat-mpr').innerText = '-';
         document.getElementById('modal-stat-mpr-games').innerText = 'Ingen cricket data';
@@ -1245,7 +1237,7 @@
         let mprKV = '-';
         if (pMPR) {
           mprVal = pMPR.mpr.toFixed(2);
-          mprKV = `${pMPR.wins}/${pMPR.games}`;
+          mprKV = `${pMPR.games}`;
           if (pMPR.hat) highHighlights.push(`${pMPR.hat} Hat`);
           if (pMPR['9mr']) highHighlights.push(`${pMPR['9mr']} 9MR`);
         }
