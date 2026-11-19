@@ -694,18 +694,25 @@
       renderScheduleForRound(latestR);
     }
 
+    function isRealMatch(m) {
+      const h = (m.home || '').toLowerCase();
+      const a = (m.away || '').toLowerCase();
+      return h !== 'spillefri' && a !== 'utsatte kamper' && h !== 'utsatte kamper' && a !== 'spillefri';
+    }
+
     function renderScheduleForRound(roundNum) {
       roundNum = parseInt(roundNum);
       const container = document.getElementById('round-matches-container');
       container.innerHTML = '';
 
       const rData = (appData.schedule || []).find(r => r.round === roundNum);
-      if (!rData || !rData.matches || rData.matches.length === 0) {
+      const matches = (rData && rData.matches) ? rData.matches.filter(isRealMatch) : [];
+      if (matches.length === 0) {
         container.innerHTML = '<p class="text-xs text-slate-500 col-span-2">Ingen kamper registrert for denne runden.</p>';
         return;
       }
 
-      rData.matches.forEach(m => {
+      matches.forEach(m => {
         const isFavMatch = favoriteTeam && (m.home === favoriteTeam || m.away === favoriteTeam);
         const card = document.createElement('div');
         card.className = `p-3 rounded-lg border bg-slate-950/60 ${isFavMatch ? 'border-emerald-700/60 bg-slate-900/90' : 'border-slate-800'}`;
@@ -777,10 +784,10 @@
       container.innerHTML = '';
 
       const rSched = (appData.schedule || []).find(r => r.round === rNum);
-      const matches = rSched ? rSched.matches : [];
+      const matches = (rSched && rSched.matches) ? rSched.matches.filter(isRealMatch) : [];
       document.getElementById('runder-matches-count').innerText = `${matches.length} kamper`;
 
-      if (!matches || matches.length === 0) {
+      if (matches.length === 0) {
         container.innerHTML = '<p class="text-xs text-slate-500 col-span-2">Ingen kampoppgjør funnet for denne runden.</p>';
         return;
       }
@@ -831,7 +838,7 @@
             <th class="py-2.5 px-3 w-8 text-center font-sans">#</th>
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
-            <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
+            <th class="py-2.5 px-2 text-right font-sans">PPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
             <th class="py-2.5 px-2 text-right font-sans">L-Ton</th>
             <th class="py-2.5 px-2 text-right font-sans">H-Ton</th>
@@ -857,7 +864,7 @@
             </td>
             <td class="py-2.5 px-3 font-sans text-xs text-slate-400">${p.team}</td>
             <td class="py-2.5 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
-            <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
+            <td class="py-2.5 px-2 text-center text-slate-300">${p.wins}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.lton}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.hton}</td>
             <td class="py-2.5 px-2 text-right text-slate-300">${p.hats}</td>
@@ -872,7 +879,7 @@
             <th class="py-2.5 px-3 w-8 text-center font-sans">#</th>
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
-            <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">MPR</th>
+            <th class="py-2.5 px-2 text-right font-sans">MPR</th>
             <th class="py-2.5 px-2 text-right font-sans">5MR</th>
             <th class="py-2.5 px-2 text-right font-sans">6MR</th>
             <th class="py-2.5 px-2 text-right font-sans">7MR</th>
@@ -978,7 +985,7 @@
             <th class="py-2.5 px-3 w-8 text-center font-sans">#</th>
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
-            <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">PPR</th>
+            <th class="py-2.5 px-2 text-right font-sans">PPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Leg</th>
             <th class="py-2.5 px-2 text-center font-sans">Utganger</th>
             <th class="py-2.5 px-2 text-right font-sans">L-Ton</th>
@@ -1007,7 +1014,7 @@
             <td class="py-2 px-3 font-sans text-xs text-slate-400">${p.team}</td>
             <td class="py-2 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
             <td class="py-2 px-2 text-center text-slate-400">${p.games}</td>
-            <td class="py-2 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
+            <td class="py-2 px-2 text-center text-slate-300">${p.wins}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.lton}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.hton}</td>
             <td class="py-2 px-2 text-right text-slate-300">${p.hats}</td>
@@ -1023,7 +1030,7 @@
             <th class="py-2.5 px-3 w-8 text-center font-sans">#</th>
             <th class="py-2.5 px-3 font-sans">Spiller</th>
             <th class="py-2.5 px-3 font-sans">Lag</th>
-            <th class="py-2.5 px-2 text-right text-emerald-400 font-sans">MPR</th>
+            <th class="py-2.5 px-2 text-right font-sans">MPR</th>
             <th class="py-2.5 px-2 text-center font-sans">Leg</th>
             <th class="py-2.5 px-2 text-right font-sans">5MR</th>
             <th class="py-2.5 px-2 text-right font-sans">6MR</th>
@@ -1111,7 +1118,7 @@
           <td class="py-2.5 px-2 text-right font-bold text-white">${p.ppr.toFixed(2)}</td>
           <td class="py-2.5 px-2 text-right font-bold text-white">${mprVal}</td>
           <td class="py-2.5 px-2 text-center text-slate-400">${matchesPlayed}</td>
-          <td class="py-2.5 px-2 text-center text-emerald-400 font-semibold">${p.wins}</td>
+          <td class="py-2.5 px-2 text-center text-slate-300">${p.wins}</td>
           <td class="py-2.5 px-2 text-right text-slate-200">${p.high_out || '-'}</td>
           <td class="py-2.5 px-3 text-right text-slate-300">${p.lton}</td>
         `;

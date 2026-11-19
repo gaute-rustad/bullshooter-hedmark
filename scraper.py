@@ -116,6 +116,8 @@ def parse_tabell_page(html):
             note = cells[6] if len(cells) > 6 else ""
 
             if home and away and current_round:
+                if home.lower() in ("spillefri", "utsatte kamper") or away.lower() in ("spillefri", "utsatte kamper"):
+                    continue
                 home_legs = None
                 away_legs = None
                 is_postponed = "utsatt" in result.lower() or "utsatt" in note.lower()
