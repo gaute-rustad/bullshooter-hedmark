@@ -317,14 +317,14 @@
           <span class="text-[11px] text-slate-500" id="lag-pts">-</span>
         </div>
         <div class="bg-slate-900 border border-slate-800 rounded-lg p-3">
-          <p class="text-xs text-slate-400">Tap / Seire</p>
+          <p class="text-xs text-slate-400">Vunnet / tapt</p>
           <p class="text-lg font-bold text-white font-mono mt-0.5" id="lag-record">-</p>
           <span class="text-[11px] text-slate-500" id="lag-winpct">-</span>
         </div>
         <div class="bg-slate-900 border border-slate-800 rounded-lg p-3">
           <p class="text-xs text-slate-400">Leg-differanse</p>
           <p class="text-lg font-bold text-white font-mono mt-0.5" id="lag-legdiff">-</p>
-          <span class="text-[11px] text-slate-500">Totalt antall legs</span>
+          <span class="text-[11px] text-slate-500">Bra eller dårlig</span>
         </div>
         <div class="bg-slate-900 border border-slate-800 rounded-lg p-3">
           <p class="text-xs text-slate-400">Registrerte spillere</p>
@@ -1091,7 +1091,7 @@
         document.getElementById('lag-rank').innerText = `${sIdx + 1}. plass`;
         document.getElementById('lag-pts').innerText = `${s.points} poeng`;
         document.getElementById('lag-record').innerText = `${s.wins}V - ${s.losses}T`;
-        document.getElementById('lag-winpct').innerText = `${s.win_pct}% seier (${s.games} spilte kamper)`;
+        document.getElementById('lag-winpct').innerText = `${s.win_pct}% seier (${s.games} spilte leg)`;
         document.getElementById('lag-legdiff').innerText = `${s.leg_diff}`;
       }
 
