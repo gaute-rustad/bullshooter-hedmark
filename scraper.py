@@ -202,81 +202,80 @@ def parse_round_page(html):
     mpr_improvers = []
     round_mpr = []
 
-    # Table 0: PPR Improvement
-    if len(tables) >= 1:
-        for row in tables[0].find_all("tr")[1:]:
-            cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
-            if len(cells) >= 5 and cells[0] != "Player":
-                try:
-                    ppr_improvers.append({
-                        "player": cells[0],
-                        "team": cells[1],
-                        "prev_ppr": float(cells[2].replace(',', '.')),
-                        "round_ppr": float(cells[3].replace(',', '.')),
-                        "improvement": float(cells[4].replace(',', '.'))
-                    })
-                except Exception:
-                    pass
+    for table in tables:
+        rows = table.find_all("tr")
+        if not rows:
+            continue
+        headers = [clean_cell(c.get_text()) for c in rows[0].find_all(["td", "th"])]
 
-    # Table 1: Round PPR
-    if len(tables) >= 2:
-        for row in tables[1].find_all("tr")[1:]:
-            cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
-            if len(cells) >= 17 and cells[0] != "Player":
-                try:
-                    round_ppr.append({
-                        "player": cells[0],
-                        "team": cells[1],
-                        "ppr": float(cells[2].replace(',', '.')),
-                        "games": int(cells[3]),
-                        "wins": int(cells[4]),
-                        "lton": int(cells[12]),
-                        "hats": int(cells[13]),
-                        "hton": int(cells[14]),
-                        "ton80": int(cells[15]),
-                        "high_out": int(cells[16]) if cells[16].isdigit() else 0
-                    })
-                except Exception:
-                    pass
-
-    # Table 2: MPR Improvement
-    if len(tables) >= 3:
-        for row in tables[2].find_all("tr")[1:]:
-            cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
-            if len(cells) >= 5 and cells[0] != "Player":
-                try:
-                    mpr_improvers.append({
-                        "player": cells[0],
-                        "team": cells[1],
-                        "prev_mpr": float(cells[2].replace(',', '.')),
-                        "round_mpr": float(cells[3].replace(',', '.')),
-                        "improvement": float(cells[4].replace(',', '.'))
-                    })
-                except Exception:
-                    pass
-
-    # Table 3: Round MPR
-    if len(tables) >= 4:
-        for row in tables[3].find_all("tr")[1:]:
-            cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
-            if len(cells) >= 14 and cells[0] != "Player":
-                try:
-                    round_mpr.append({
-                        "player": cells[0],
-                        "team": cells[1],
-                        "mpr": float(cells[2].replace(',', '.')),
-                        "games": int(cells[3]),
-                        "wins": int(cells[4]),
-                        "5mr": int(cells[5]),
-                        "6mr": int(cells[6]),
-                        "7mr": int(cells[7]),
-                        "8mr": int(cells[8]),
-                        "9mr": int(cells[9]),
-                        "hat": int(cells[10]),
-                        "whrse": int(cells[11])
-                    })
-                except Exception:
-                    pass
+        if "PPR Improvement" in headers or "Previous PPR" in headers:
+            for row in rows[1:]:
+                cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
+                if len(cells) >= 5 and cells[0] != "Player":
+                    try:
+                        ppr_improvers.append({
+                            "player": cells[0],
+                            "team": cells[1],
+                            "prev_ppr": float(cells[2].replace(',', '.')),
+                            "round_ppr": float(cells[3].replace(',', '.')),
+                            "improvement": float(cells[4].replace(',', '.'))
+                        })
+                    except Exception:
+                        pass
+        elif "PPR" in headers and "LTon" in headers:
+            for row in rows[1:]:
+                cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
+                if len(cells) >= 17 and cells[0] != "Player":
+                    try:
+                        round_ppr.append({
+                            "player": cells[0],
+                            "team": cells[1],
+                            "ppr": float(cells[2].replace(',', '.')),
+                            "games": int(cells[3]),
+                            "wins": int(cells[4]),
+                            "lton": int(cells[12]),
+                            "hats": int(cells[13]),
+                            "hton": int(cells[14]),
+                            "ton80": int(cells[15]),
+                            "high_out": int(cells[16]) if cells[16].isdigit() else 0
+                        })
+                    except Exception:
+                        pass
+        elif "MPR Improvement" in headers or "Previous MPR" in headers:
+            for row in rows[1:]:
+                cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
+                if len(cells) >= 5 and cells[0] != "Player":
+                    try:
+                        mpr_improvers.append({
+                            "player": cells[0],
+                            "team": cells[1],
+                            "prev_mpr": float(cells[2].replace(',', '.')),
+                            "round_mpr": float(cells[3].replace(',', '.')),
+                            "improvement": float(cells[4].replace(',', '.'))
+                        })
+                    except Exception:
+                        pass
+        elif "MPR" in headers and "5MR" in headers:
+            for row in rows[1:]:
+                cells = [clean_cell(c.get_text()) for c in row.find_all(["td", "th"])]
+                if len(cells) >= 14 and cells[0] != "Player":
+                    try:
+                        round_mpr.append({
+                            "player": cells[0],
+                            "team": cells[1],
+                            "mpr": float(cells[2].replace(',', '.')),
+                            "games": int(cells[3]),
+                            "wins": int(cells[4]),
+                            "5mr": int(cells[5]),
+                            "6mr": int(cells[6]),
+                            "7mr": int(cells[7]),
+                            "8mr": int(cells[8]),
+                            "9mr": int(cells[9]),
+                            "hat": int(cells[10]),
+                            "whrse": int(cells[11])
+                        })
+                    except Exception:
+                        pass
 
     return {
         "ppr_improvers": ppr_improvers,
@@ -381,27 +380,24 @@ def main():
         snitt_html = fetch_html(cat_info["totalsnitt_url"])
         ppr_stats, mpr_stats = parse_totalsnitt_page(snitt_html)
 
-    # Scrape all rounds (cached if already scraped, except latest round)
+    # Scrape all rounds every time so postponed matches played later are picked up
     all_rounds_links = cat_info.get("all_rounds_links", {})
     latest_r_num = cat_info["latest_round_num"]
     all_rounds_data = {}
 
     for r_num, info in sorted(all_rounds_links.items()):
         str_r = str(r_num)
-        # If we already have this round in cache and it is not the latest round, reuse it!
-        if str_r in existing_rounds and r_num != latest_r_num:
-            all_rounds_data[str_r] = existing_rounds[str_r]
-            print(f"Runde {r_num}: cached")
-        else:
-            print(f"Fetching Runde {r_num} ({info['url']})...")
-            try:
-                r_html = fetch_html(info["url"])
-                parsed_r = parse_round_page(r_html)
-                parsed_r["number"] = r_num
-                parsed_r["date"] = info["date"]
-                all_rounds_data[str_r] = parsed_r
-            except Exception as e:
-                print(f"Error fetching round {r_num}: {e}")
+        print(f"Fetching Runde {r_num} ({info['url']})...")
+        try:
+            r_html = fetch_html(info["url"])
+            parsed_r = parse_round_page(r_html)
+            parsed_r["number"] = r_num
+            parsed_r["date"] = info["date"]
+            all_rounds_data[str_r] = parsed_r
+        except Exception as e:
+            print(f"Error fetching round {r_num}: {e}")
+            if str_r in existing_rounds:
+                all_rounds_data[str_r] = existing_rounds[str_r]
 
     latest_round_data = all_rounds_data.get(str(latest_r_num), {})
 
@@ -418,14 +414,14 @@ def main():
     weekly_summary = generate_weekly_summary(data)
     data["weekly_summary"] = weekly_summary
 
-    # Check for changes
-    has_changes = True
+    # Check if latest round / standings changed (for ntfy)
+    has_new_round_or_standings = True
     if prev_data:
         prev_r = prev_data.get("latest_round", {}).get("number", 0)
         if (prev_r == latest_r_num and 
             prev_data.get("standings") == standings and
             prev_data.get("latest_round") == latest_round_data):
-            has_changes = False
+            has_new_round_or_standings = False
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -446,7 +442,7 @@ def main():
     force_notify = os.environ.get("FORCE_NOTIFY", "").lower() in ["1", "true", "yes"]
     
     if ntfy_topic:
-        if has_changes or force_notify:
+        if has_new_round_or_standings or force_notify:
             print("New round/data detected! Sending ntfy notification...")
             gh_pages_url = os.environ.get("GH_PAGES_URL", "")
             send_ntfy(weekly_summary, ntfy_topic, title=f"Hedmark C: Runde {cat_info['latest_round_num']} er publisert!", click_url=gh_pages_url)

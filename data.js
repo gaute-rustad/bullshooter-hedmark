@@ -3572,235 +3572,844 @@ window.EMBEDDED_DATA = {
   },
   "all_rounds": {
     "1": {
-      "ppr_improvers": [
+      "ppr_improvers": [],
+      "round_ppr": [
         {
           "player": "Stephan Oppegaard",
           "team": "Darty Dancing",
-          "prev_ppr": 58.3,
-          "round_ppr": 4.0,
-          "improvement": 3.0
+          "ppr": 58.3,
+          "games": 4,
+          "wins": 3,
+          "lton": 5,
+          "hats": 1,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 34
         },
         {
           "player": "Robert Soerensen",
           "team": "Minions Dart",
-          "prev_ppr": 57.42,
-          "round_ppr": 4.0,
-          "improvement": 3.0
+          "ppr": 57.42,
+          "games": 4,
+          "wins": 3,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 50
         },
         {
           "player": "Oyvind Haugli",
           "team": "Minions Dart",
-          "prev_ppr": 51.17,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 51.17,
+          "games": 4,
+          "wins": 1,
+          "lton": 4,
+          "hats": 1,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 20
         },
         {
           "player": "Terje Andreassen",
           "team": "Bullboellene",
-          "prev_ppr": 49.82,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 49.82,
+          "games": 4,
+          "wins": 1,
+          "lton": 3,
+          "hats": 2,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 20
         },
         {
           "player": "Bjornar Nyberget",
           "team": "Dart Vader",
-          "prev_ppr": 46.46,
-          "round_ppr": 4.0,
-          "improvement": 2.0
+          "ppr": 46.46,
+          "games": 4,
+          "wins": 2,
+          "lton": 4,
+          "hats": 0,
+          "hton": 1,
+          "ton80": 0,
+          "high_out": 34
         },
         {
           "player": "Maria Larssen",
           "team": "Darty Dancing",
-          "prev_ppr": 46.21,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 46.21,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 8
         },
         {
           "player": "Robert Hangaard",
           "team": "Banana Bulls",
-          "prev_ppr": 45.46,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 45.46,
+          "games": 4,
+          "wins": 1,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 30
         },
         {
           "player": "Jan Morten Hustad",
           "team": "Team Aloha",
-          "prev_ppr": 45.44,
-          "round_ppr": 4.0,
-          "improvement": 3.0
+          "ppr": 45.44,
+          "games": 4,
+          "wins": 3,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 49
         },
         {
           "player": "Nina Granum",
           "team": "Bullboellene",
-          "prev_ppr": 45.28,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 45.28,
+          "games": 4,
+          "wins": 0,
+          "lton": 4,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Gaute Rustad",
           "team": "Darty Nellie",
-          "prev_ppr": 44.12,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 44.12,
+          "games": 4,
+          "wins": 0,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Odin Kirkeby",
           "team": "Ponktert Pil",
-          "prev_ppr": 43.09,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 43.09,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 4
         },
         {
           "player": "Siv Rakel Roland",
           "team": "Team Aloha",
-          "prev_ppr": 42.79,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 42.79,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 37
         },
         {
           "player": "Anders Kringsjaa",
           "team": "Darty Dancing",
-          "prev_ppr": 42.52,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 42.52,
+          "games": 4,
+          "wins": 1,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 6
         },
         {
           "player": "Siv Olsen",
           "team": "Darty Nellie",
-          "prev_ppr": 42.5,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 42.5,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Anders Bakken",
           "team": "Banana Bulls",
-          "prev_ppr": 41.85,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 41.85,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 67
         },
         {
           "player": "Ulf Idrupsen",
           "team": "Dart Vader",
-          "prev_ppr": 41.85,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 41.85,
+          "games": 4,
+          "wins": 1,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 46
         },
         {
           "player": "Anita Lillesveen",
           "team": "Team Aloha",
-          "prev_ppr": 41.64,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 41.64,
+          "games": 4,
+          "wins": 0,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Marlon Sigurdsen",
           "team": "Darty Nellie",
-          "prev_ppr": 41.28,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 41.28,
+          "games": 4,
+          "wins": 0,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Christian Skar",
           "team": "Dart Vader",
-          "prev_ppr": 40.49,
-          "round_ppr": 4.0,
-          "improvement": 2.0
+          "ppr": 40.49,
+          "games": 4,
+          "wins": 2,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 16
         },
         {
           "player": "Arild Feragen",
           "team": "Dart Vader",
-          "prev_ppr": 39.34,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 39.34,
+          "games": 4,
+          "wins": 0,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Fred Nordstad",
           "team": "Minions Dart",
-          "prev_ppr": 39.17,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 39.17,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 30
         },
         {
           "player": "Anita Vangen",
           "team": "Banana Bulls",
-          "prev_ppr": 38.93,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 38.93,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Julie Heier",
           "team": "Ponktert Pil",
-          "prev_ppr": 38.24,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 38.24,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 39
         },
         {
           "player": "Frode Berntsen",
           "team": "Bullboellene",
-          "prev_ppr": 38.14,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 38.14,
+          "games": 4,
+          "wins": 0,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Karianne Motroen",
           "team": "Ponktert Pil",
-          "prev_ppr": 36.67,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 36.67,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Aina Kristiansen",
           "team": "Banana Bulls",
-          "prev_ppr": 36.62,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 36.62,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Liss Jakobsen",
           "team": "Darty Nellie",
-          "prev_ppr": 35.81,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 35.81,
+          "games": 4,
+          "wins": 0,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Petter Naustvik",
           "team": "Team Aloha",
-          "prev_ppr": 35.15,
-          "round_ppr": 4.0,
-          "improvement": 2.0
+          "ppr": 35.15,
+          "games": 4,
+          "wins": 2,
+          "lton": 2,
+          "hats": 1,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 45
         },
         {
           "player": "Maren Moerk",
           "team": "Darty Dancing",
-          "prev_ppr": 34.66,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 34.66,
+          "games": 4,
+          "wins": 1,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 33
         },
         {
           "player": "Tirna Mellum",
           "team": "Darty Nellie",
-          "prev_ppr": 33.97,
-          "round_ppr": 4.0,
-          "improvement": 1.0
+          "ppr": 33.97,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 4
         },
         {
           "player": "Jan Roger Johansen",
           "team": "Bullboellene",
-          "prev_ppr": 33.77,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 33.77,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Marte Korsgaard",
           "team": "Minions Dart",
-          "prev_ppr": 29.49,
-          "round_ppr": 4.0,
-          "improvement": 0.0
+          "ppr": 29.49,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         }
       ],
-      "round_ppr": [],
       "mpr_improvers": [],
-      "round_mpr": [],
+      "round_mpr": [
+        {
+          "player": "Terje Andreassen",
+          "team": "Bullboellene",
+          "mpr": 2.48,
+          "games": 3,
+          "wins": 2,
+          "5mr": 2,
+          "6mr": 2,
+          "7mr": 2,
+          "8mr": 0,
+          "9mr": 1,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Robert Hangaard",
+          "team": "Banana Bulls",
+          "mpr": 2.05,
+          "games": 3,
+          "wins": 1,
+          "5mr": 3,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Robert Soerensen",
+          "team": "Minions Dart",
+          "mpr": 2.05,
+          "games": 3,
+          "wins": 0,
+          "5mr": 2,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Gaute Rustad",
+          "team": "Darty Nellie",
+          "mpr": 2.04,
+          "games": 3,
+          "wins": 0,
+          "5mr": 4,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Stephan Oppegaard",
+          "team": "Darty Dancing",
+          "mpr": 2.02,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 1,
+          "whrse": 0
+        },
+        {
+          "player": "Anders Bakken",
+          "team": "Banana Bulls",
+          "mpr": 1.96,
+          "games": 3,
+          "wins": 0,
+          "5mr": 3,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Bjornar Nyberget",
+          "team": "Dart Vader",
+          "mpr": 1.8,
+          "games": 3,
+          "wins": 1,
+          "5mr": 4,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Siv Olsen",
+          "team": "Darty Nellie",
+          "mpr": 1.71,
+          "games": 3,
+          "wins": 2,
+          "5mr": 2,
+          "6mr": 1,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Christian Skar",
+          "team": "Dart Vader",
+          "mpr": 1.62,
+          "games": 3,
+          "wins": 0,
+          "5mr": 2,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "mpr": 1.61,
+          "games": 3,
+          "wins": 0,
+          "5mr": 2,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Nina Granum",
+          "team": "Bullboellene",
+          "mpr": 1.58,
+          "games": 3,
+          "wins": 0,
+          "5mr": 3,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Aina Kristiansen",
+          "team": "Banana Bulls",
+          "mpr": 1.57,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Arild Feragen",
+          "team": "Dart Vader",
+          "mpr": 1.53,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Liss Jakobsen",
+          "team": "Darty Nellie",
+          "mpr": 1.52,
+          "games": 3,
+          "wins": 2,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Oyvind Haugli",
+          "team": "Minions Dart",
+          "mpr": 1.52,
+          "games": 3,
+          "wins": 1,
+          "5mr": 3,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Jan Morten Hustad",
+          "team": "Team Aloha",
+          "mpr": 1.52,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Siv Rakel Roland",
+          "team": "Team Aloha",
+          "mpr": 1.48,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Petter Naustvik",
+          "team": "Team Aloha",
+          "mpr": 1.44,
+          "games": 3,
+          "wins": 0,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Anita Vangen",
+          "team": "Banana Bulls",
+          "mpr": 1.41,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Fred Nordstad",
+          "team": "Minions Dart",
+          "mpr": 1.39,
+          "games": 3,
+          "wins": 2,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "mpr": 1.38,
+          "games": 3,
+          "wins": 2,
+          "5mr": 1,
+          "6mr": 1,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Ulf Idrupsen",
+          "team": "Dart Vader",
+          "mpr": 1.35,
+          "games": 3,
+          "wins": 2,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Frode Berntsen",
+          "team": "Bullboellene",
+          "mpr": 1.35,
+          "games": 3,
+          "wins": 0,
+          "5mr": 1,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Tirna Mellum",
+          "team": "Darty Nellie",
+          "mpr": 1.31,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Anders Kringsjaa",
+          "team": "Darty Dancing",
+          "mpr": 1.3,
+          "games": 3,
+          "wins": 1,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Maren Moerk",
+          "team": "Darty Dancing",
+          "mpr": 1.22,
+          "games": 3,
+          "wins": 0,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Jan Roger Johansen",
+          "team": "Bullboellene",
+          "mpr": 1.22,
+          "games": 3,
+          "wins": 2,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Karianne Motroen",
+          "team": "Ponktert Pil",
+          "mpr": 1.2,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Marlon Sigurdsen",
+          "team": "Darty Nellie",
+          "mpr": 1.14,
+          "games": 3,
+          "wins": 1,
+          "5mr": 2,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Anita Lillesveen",
+          "team": "Team Aloha",
+          "mpr": 1.05,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Maria Larssen",
+          "team": "Darty Dancing",
+          "mpr": 1.02,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Marte Korsgaard",
+          "team": "Minions Dart",
+          "mpr": 0.9,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        }
+      ],
       "number": 1,
       "date": "19.08.26"
     },
@@ -6549,6 +7158,20 @@ window.EMBEDDED_DATA = {
     "5": {
       "ppr_improvers": [
         {
+          "player": "Siv Rakel Roland",
+          "team": "Team Aloha",
+          "prev_ppr": 45.26,
+          "round_ppr": 60.73,
+          "improvement": 15.47
+        },
+        {
+          "player": "Henrik Elsebutangen",
+          "team": "Bullboellene",
+          "prev_ppr": 31.54,
+          "round_ppr": 45.92,
+          "improvement": 14.38
+        },
+        {
           "player": "Marte Korsgaard",
           "team": "Minions Dart",
           "prev_ppr": 29.49,
@@ -6568,23 +7191,21 @@ window.EMBEDDED_DATA = {
           "prev_ppr": 43.5,
           "round_ppr": 50.09,
           "improvement": 6.59
-        },
-        {
-          "player": "Tom Soerum",
-          "team": "Dart Vader",
-          "prev_ppr": 37.34,
-          "round_ppr": 43.85,
-          "improvement": 6.51
-        },
-        {
-          "player": "Kent Saallman",
-          "team": "Banana Bulls",
-          "prev_ppr": 42.15,
-          "round_ppr": 48.37,
-          "improvement": 6.22
         }
       ],
       "round_ppr": [
+        {
+          "player": "Siv Rakel Roland",
+          "team": "Team Aloha",
+          "ppr": 60.73,
+          "games": 4,
+          "wins": 4,
+          "lton": 5,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 74
+        },
         {
           "player": "Stephan Oppegaard",
           "team": "Darty Dancing",
@@ -6682,6 +7303,18 @@ window.EMBEDDED_DATA = {
           "high_out": 20
         },
         {
+          "player": "Nina Granum",
+          "team": "Bullboellene",
+          "ppr": 46.95,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 2
+        },
+        {
           "player": "Odin Kirkeby",
           "team": "Ponktert Pil",
           "ppr": 46.25,
@@ -6694,12 +7327,36 @@ window.EMBEDDED_DATA = {
           "high_out": 14
         },
         {
+          "player": "Henrik Elsebutangen",
+          "team": "Bullboellene",
+          "ppr": 45.92,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 26
+        },
+        {
           "player": "Siv Olsen",
           "team": "Darty Nellie",
           "ppr": 44.78,
           "games": 4,
           "wins": 0,
           "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
+        },
+        {
+          "player": "Petter Naustvik",
+          "team": "Team Aloha",
+          "ppr": 44.71,
+          "games": 4,
+          "wins": 0,
+          "lton": 4,
           "hats": 0,
           "hton": 0,
           "ton80": 0,
@@ -6754,16 +7411,16 @@ window.EMBEDDED_DATA = {
           "high_out": 30
         },
         {
-          "player": "Jan Morten Hustad",
+          "player": "Henrik Stormoen",
           "team": "Team Aloha",
-          "ppr": 40.38,
+          "ppr": 40.43,
           "games": 4,
-          "wins": 2,
-          "lton": 1,
+          "wins": 0,
+          "lton": 4,
           "hats": 0,
           "hton": 0,
           "ton80": 0,
-          "high_out": 36
+          "high_out": 0
         },
         {
           "player": "Phillip Singdahlsen",
@@ -6790,6 +7447,18 @@ window.EMBEDDED_DATA = {
           "high_out": 6
         },
         {
+          "player": "Yvonne Strekerud",
+          "team": "Bullboellene",
+          "ppr": 39.0,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 4
+        },
+        {
           "player": "Arild Feragen",
           "team": "Dart Vader",
           "ppr": 38.81,
@@ -6800,6 +7469,18 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 0
+        },
+        {
+          "player": "Jan Morten Hustad",
+          "team": "Team Aloha",
+          "ppr": 38.67,
+          "games": 8,
+          "wins": 2,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 36
         },
         {
           "player": "Gry Lundby",
@@ -6836,6 +7517,18 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 32
+        },
+        {
+          "player": "Jan Roger Johansen",
+          "team": "Bullboellene",
+          "ppr": 33.53,
+          "games": 4,
+          "wins": 0,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Frank Dahl",
@@ -6876,6 +7569,13 @@ window.EMBEDDED_DATA = {
       ],
       "mpr_improvers": [
         {
+          "player": "Henrik Elsebutangen",
+          "team": "Bullboellene",
+          "prev_mpr": 1.18,
+          "round_mpr": 1.93,
+          "improvement": 0.75
+        },
+        {
           "player": "Oyvind Haugli",
           "team": "Minions Dart",
           "prev_mpr": 1.61,
@@ -6897,18 +7597,11 @@ window.EMBEDDED_DATA = {
           "improvement": 0.34
         },
         {
-          "player": "Tony Sjoelie",
-          "team": "Darty Dancing",
-          "prev_mpr": 1.47,
-          "round_mpr": 1.79,
-          "improvement": 0.32
-        },
-        {
-          "player": "Marianne Andersen",
-          "team": "Minions Dart",
-          "prev_mpr": 0.85,
-          "round_mpr": 1.11,
-          "improvement": 0.26
+          "player": "Siv Rakel Roland",
+          "team": "Team Aloha",
+          "prev_mpr": 1.69,
+          "round_mpr": 2.02,
+          "improvement": 0.33
         }
       ],
       "round_mpr": [
@@ -6955,6 +7648,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Siv Rakel Roland",
+          "team": "Team Aloha",
+          "mpr": 2.02,
+          "games": 3,
+          "wins": 0,
+          "5mr": 4,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Gaute Rustad",
           "team": "Darty Nellie",
           "mpr": 1.98,
@@ -6962,6 +7669,20 @@ window.EMBEDDED_DATA = {
           "wins": 0,
           "5mr": 0,
           "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Henrik Elsebutangen",
+          "team": "Bullboellene",
+          "mpr": 1.93,
+          "games": 3,
+          "wins": 0,
+          "5mr": 4,
+          "6mr": 2,
           "7mr": 0,
           "8mr": 0,
           "9mr": 0,
@@ -7017,6 +7738,20 @@ window.EMBEDDED_DATA = {
           "games": 3,
           "wins": 0,
           "5mr": 3,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Henrik Stormoen",
+          "team": "Team Aloha",
+          "mpr": 1.79,
+          "games": 3,
+          "wins": 1,
+          "5mr": 1,
           "6mr": 0,
           "7mr": 0,
           "8mr": 0,
@@ -7095,6 +7830,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Nina Granum",
+          "team": "Bullboellene",
+          "mpr": 1.48,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 2,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Julie Heier",
           "team": "Ponktert Pil",
           "mpr": 1.46,
@@ -7137,12 +7886,26 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
-          "player": "Jan Morten Hustad",
-          "team": "Team Aloha",
-          "mpr": 1.36,
+          "player": "Yvonne Strekerud",
+          "team": "Bullboellene",
+          "mpr": 1.33,
           "games": 3,
           "wins": 1,
-          "5mr": 3,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Jan Morten Hustad",
+          "team": "Team Aloha",
+          "mpr": 1.3,
+          "games": 6,
+          "wins": 3,
+          "5mr": 5,
           "6mr": 2,
           "7mr": 0,
           "8mr": 0,
@@ -7172,6 +7935,20 @@ window.EMBEDDED_DATA = {
           "wins": 2,
           "5mr": 0,
           "6mr": 1,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Petter Naustvik",
+          "team": "Team Aloha",
+          "mpr": 1.13,
+          "games": 3,
+          "wins": 0,
+          "5mr": 1,
+          "6mr": 0,
           "7mr": 0,
           "8mr": 0,
           "9mr": 0,
@@ -7235,6 +8012,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Jan Roger Johansen",
+          "team": "Bullboellene",
+          "mpr": 1.04,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Gry Lundby",
           "team": "Minions Dart",
           "mpr": 1.0,
@@ -7250,7 +8041,7 @@ window.EMBEDDED_DATA = {
         }
       ],
       "number": 5,
-      "date": "16.09.26"
+      "date": "18.11.26"
     },
     "6": {
       "ppr_improvers": [
@@ -10040,6 +10831,18 @@ window.EMBEDDED_DATA = {
           "high_out": 0
         },
         {
+          "player": "Gaute Rustad",
+          "team": "Darty Nellie",
+          "ppr": 47.63,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 1,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 5
+        },
+        {
           "player": "Ulf Idrupsen",
           "team": "Dart Vader",
           "ppr": 47.22,
@@ -10076,6 +10879,18 @@ window.EMBEDDED_DATA = {
           "high_out": 30
         },
         {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "ppr": 43.64,
+          "games": 4,
+          "wins": 0,
+          "lton": 3,
+          "hats": 0,
+          "hton": 1,
+          "ton80": 0,
+          "high_out": 0
+        },
+        {
           "player": "Anders Bakken",
           "team": "Banana Bulls",
           "ppr": 43.6,
@@ -10088,6 +10903,30 @@ window.EMBEDDED_DATA = {
           "high_out": 4
         },
         {
+          "player": "Siv Olsen",
+          "team": "Darty Nellie",
+          "ppr": 42.26,
+          "games": 4,
+          "wins": 1,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 108
+        },
+        {
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "ppr": 41.35,
+          "games": 4,
+          "wins": 2,
+          "lton": 1,
+          "hats": 1,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 10
+        },
+        {
           "player": "Emil Dersyd",
           "team": "Bullboellene",
           "ppr": 41.19,
@@ -10098,6 +10937,30 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 0
+        },
+        {
+          "player": "Karianne Motroen",
+          "team": "Ponktert Pil",
+          "ppr": 40.63,
+          "games": 4,
+          "wins": 1,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 65
+        },
+        {
+          "player": "Hera Venstad",
+          "team": "Darty Nellie",
+          "ppr": 39.17,
+          "games": 4,
+          "wins": 1,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 26
         },
         {
           "player": "Jan Morten Hustad",
@@ -10196,9 +11059,33 @@ window.EMBEDDED_DATA = {
           "high_out": 0
         },
         {
+          "player": "Sofie Fjoesne",
+          "team": "Darty Nellie",
+          "ppr": 34.55,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 57
+        },
+        {
           "player": "Jan Roger Johansen",
           "team": "Bullboellene",
           "ppr": 33.7,
+          "games": 4,
+          "wins": 0,
+          "lton": 0,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
+        },
+        {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "ppr": 33.62,
           "games": 4,
           "wins": 0,
           "lton": 0,
@@ -10274,11 +11161,11 @@ window.EMBEDDED_DATA = {
           "improvement": 0.43
         },
         {
-          "player": "Maren Moerk",
-          "team": "Darty Dancing",
-          "prev_mpr": 1.67,
-          "round_mpr": 2.03,
-          "improvement": 0.36
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "prev_mpr": 1.46,
+          "round_mpr": 1.84,
+          "improvement": 0.38
         }
       ],
       "round_mpr": [
@@ -10353,6 +11240,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Gaute Rustad",
+          "team": "Darty Nellie",
+          "mpr": 2.01,
+          "games": 3,
+          "wins": 0,
+          "5mr": 4,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Anders Kohmann",
           "team": "Team Aloha",
           "mpr": 1.88,
@@ -10381,6 +11282,48 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Siv Olsen",
+          "team": "Darty Nellie",
+          "mpr": 1.84,
+          "games": 3,
+          "wins": 2,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "mpr": 1.84,
+          "games": 3,
+          "wins": 0,
+          "5mr": 2,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Hera Venstad",
+          "team": "Darty Nellie",
+          "mpr": 1.73,
+          "games": 3,
+          "wins": 1,
+          "5mr": 2,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Maria Larssen",
           "team": "Darty Dancing",
           "mpr": 1.64,
@@ -10388,6 +11331,20 @@ window.EMBEDDED_DATA = {
           "wins": 1,
           "5mr": 0,
           "6mr": 2,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "mpr": 1.62,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
           "7mr": 0,
           "8mr": 0,
           "9mr": 0,
@@ -10563,12 +11520,54 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "mpr": 1.22,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Chris Myreng",
           "team": "Bullboellene",
           "mpr": 1.15,
           "games": 3,
           "wins": 1,
           "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Karianne Motroen",
+          "team": "Ponktert Pil",
+          "mpr": 1.1,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Sofie Fjoesne",
+          "team": "Darty Nellie",
+          "mpr": 1.1,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
           "6mr": 0,
           "7mr": 0,
           "8mr": 0,
@@ -10620,7 +11619,7 @@ window.EMBEDDED_DATA = {
         }
       ],
       "number": 9,
-      "date": "14.10.26"
+      "date": "15.11.26"
     },
     "10": {
       "ppr_improvers": [
@@ -12460,32 +13459,32 @@ window.EMBEDDED_DATA = {
           "improvement": 13.07
         },
         {
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "prev_ppr": 43.04,
+          "round_ppr": 55.65,
+          "improvement": 12.61
+        },
+        {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "prev_ppr": 39.02,
+          "round_ppr": 51.4,
+          "improvement": 12.38
+        },
+        {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "prev_ppr": 43.58,
+          "round_ppr": 51.56,
+          "improvement": 7.98
+        },
+        {
           "player": "Jan Morten Hustad",
           "team": "Team Aloha",
-          "prev_ppr": 41.54,
+          "prev_ppr": 41.02,
           "round_ppr": 47.5,
-          "improvement": 5.96
-        },
-        {
-          "player": "Gaute Rustad",
-          "team": "Darty Nellie",
-          "prev_ppr": 53.52,
-          "round_ppr": 59.15,
-          "improvement": 5.63
-        },
-        {
-          "player": "Maren Moerk",
-          "team": "Darty Dancing",
-          "prev_ppr": 44.02,
-          "round_ppr": 49.15,
-          "improvement": 5.13
-        },
-        {
-          "player": "Henrik Elsebutangen",
-          "team": "Bullboellene",
-          "prev_ppr": 38.97,
-          "round_ppr": 43.99,
-          "improvement": 5.02
+          "improvement": 6.48
         }
       ],
       "round_ppr": [
@@ -12500,6 +13499,18 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 30
+        },
+        {
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "ppr": 55.65,
+          "games": 4,
+          "wins": 1,
+          "lton": 4,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 50
         },
         {
           "player": "Tor Jonny Haugen",
@@ -12538,6 +13549,42 @@ window.EMBEDDED_DATA = {
           "high_out": 75
         },
         {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "ppr": 51.56,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 62
+        },
+        {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "ppr": 51.4,
+          "games": 4,
+          "wins": 3,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 70
+        },
+        {
+          "player": "Arild Feragen",
+          "team": "Dart Vader",
+          "ppr": 51.37,
+          "games": 4,
+          "wins": 1,
+          "lton": 3,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 44
+        },
+        {
           "player": "Stephan Oppegaard",
           "team": "Darty Dancing",
           "ppr": 50.43,
@@ -12548,6 +13595,18 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 51
+        },
+        {
+          "player": "Jonas Braend",
+          "team": "Dart Vader",
+          "ppr": 50.2,
+          "games": 4,
+          "wins": 0,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Maren Moerk",
@@ -12577,6 +13636,18 @@ window.EMBEDDED_DATA = {
           "player": "Robert Hangaard",
           "team": "Banana Bulls",
           "ppr": 47.41,
+          "games": 4,
+          "wins": 0,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
+        },
+        {
+          "player": "Ulf Idrupsen",
+          "team": "Dart Vader",
+          "ppr": 44.41,
           "games": 4,
           "wins": 0,
           "lton": 2,
@@ -12644,6 +13715,18 @@ window.EMBEDDED_DATA = {
           "hton": 0,
           "ton80": 0,
           "high_out": 34
+        },
+        {
+          "player": "Andrey Belyaev",
+          "team": "Ponktert Pil",
+          "ppr": 41.6,
+          "games": 4,
+          "wins": 0,
+          "lton": 2,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 0
         },
         {
           "player": "Nina Granum",
@@ -12754,6 +13837,18 @@ window.EMBEDDED_DATA = {
           "high_out": 0
         },
         {
+          "player": "Trine Granseth",
+          "team": "Dart Vader",
+          "ppr": 37.01,
+          "games": 4,
+          "wins": 1,
+          "lton": 1,
+          "hats": 0,
+          "hton": 0,
+          "ton80": 0,
+          "high_out": 17
+        },
+        {
           "player": "Tirna Mellum",
           "team": "Darty Nellie",
           "ppr": 34.63,
@@ -12787,10 +13882,17 @@ window.EMBEDDED_DATA = {
           "improvement": 0.47
         },
         {
-          "player": "Henrik Elsebutangen",
-          "team": "Bullboellene",
-          "prev_mpr": 1.13,
-          "round_mpr": 1.56,
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "prev_mpr": 1.42,
+          "round_mpr": 1.86,
+          "improvement": 0.44
+        },
+        {
+          "player": "Trine Granseth",
+          "team": "Dart Vader",
+          "prev_mpr": 1.51,
+          "round_mpr": 1.94,
           "improvement": 0.43
         },
         {
@@ -12806,13 +13908,6 @@ window.EMBEDDED_DATA = {
           "prev_mpr": 1.19,
           "round_mpr": 1.53,
           "improvement": 0.34
-        },
-        {
-          "player": "Aina Kristiansen",
-          "team": "Banana Bulls",
-          "prev_mpr": 1.38,
-          "round_mpr": 1.62,
-          "improvement": 0.24
         }
       ],
       "round_mpr": [
@@ -12825,6 +13920,20 @@ window.EMBEDDED_DATA = {
           "5mr": 3,
           "6mr": 1,
           "7mr": 2,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Jonas Braend",
+          "team": "Dart Vader",
+          "mpr": 2.11,
+          "games": 3,
+          "wins": 1,
+          "5mr": 3,
+          "6mr": 1,
+          "7mr": 0,
           "8mr": 0,
           "9mr": 0,
           "hat": 0,
@@ -12859,6 +13968,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Trine Granseth",
+          "team": "Dart Vader",
+          "mpr": 1.94,
+          "games": 3,
+          "wins": 1,
+          "5mr": 3,
+          "6mr": 0,
+          "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Gaute Rustad",
           "team": "Darty Nellie",
           "mpr": 1.93,
@@ -12873,6 +13996,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Arild Feragen",
+          "team": "Dart Vader",
+          "mpr": 1.89,
+          "games": 3,
+          "wins": 1,
+          "5mr": 2,
+          "6mr": 2,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Oyvind Haugli",
           "team": "Minions Dart",
           "mpr": 1.88,
@@ -12880,6 +14017,20 @@ window.EMBEDDED_DATA = {
           "wins": 1,
           "5mr": 1,
           "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Phillip Singdahlsen",
+          "team": "Ponktert Pil",
+          "mpr": 1.86,
+          "games": 3,
+          "wins": 1,
+          "5mr": 0,
+          "6mr": 1,
           "7mr": 0,
           "8mr": 0,
           "9mr": 0,
@@ -12912,6 +14063,20 @@ window.EMBEDDED_DATA = {
           "8mr": 0,
           "9mr": 0,
           "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Odin Kirkeby",
+          "team": "Ponktert Pil",
+          "mpr": 1.75,
+          "games": 3,
+          "wins": 1,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 2,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 2,
           "whrse": 0
         },
         {
@@ -12985,6 +14150,20 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Andrey Belyaev",
+          "team": "Ponktert Pil",
+          "mpr": 1.56,
+          "games": 3,
+          "wins": 1,
+          "5mr": 2,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Henrik Elsebutangen",
           "team": "Bullboellene",
           "mpr": 1.56,
@@ -13027,20 +14206,6 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
-          "player": "Anita Lillesveen",
-          "team": "Team Aloha",
-          "mpr": 1.53,
-          "games": 3,
-          "wins": 1,
-          "5mr": 1,
-          "6mr": 0,
-          "7mr": 0,
-          "8mr": 0,
-          "9mr": 0,
-          "hat": 0,
-          "whrse": 0
-        },
-        {
           "player": "Liss Jakobsen",
           "team": "Darty Nellie",
           "mpr": 1.53,
@@ -13049,6 +14214,20 @@ window.EMBEDDED_DATA = {
           "5mr": 0,
           "6mr": 0,
           "7mr": 1,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Anita Lillesveen",
+          "team": "Team Aloha",
+          "mpr": 1.53,
+          "games": 3,
+          "wins": 1,
+          "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
           "8mr": 0,
           "9mr": 0,
           "hat": 0,
@@ -13083,12 +14262,40 @@ window.EMBEDDED_DATA = {
           "whrse": 0
         },
         {
+          "player": "Julie Heier",
+          "team": "Ponktert Pil",
+          "mpr": 1.36,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
           "player": "Yvonne Strekerud",
           "team": "Bullboellene",
           "mpr": 1.28,
           "games": 3,
           "wins": 0,
           "5mr": 1,
+          "6mr": 0,
+          "7mr": 0,
+          "8mr": 0,
+          "9mr": 0,
+          "hat": 0,
+          "whrse": 0
+        },
+        {
+          "player": "Ulf Idrupsen",
+          "team": "Dart Vader",
+          "mpr": 1.22,
+          "games": 3,
+          "wins": 0,
+          "5mr": 0,
           "6mr": 0,
           "7mr": 0,
           "8mr": 0,
@@ -13154,7 +14361,7 @@ window.EMBEDDED_DATA = {
         }
       ],
       "number": 12,
-      "date": "04.11.26"
+      "date": "18.11.26"
     },
     "13": {
       "ppr_improvers": [
