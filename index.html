@@ -52,6 +52,15 @@
         <select id="season-select" onchange="loadSeason(this.value)" aria-label="Velg sesong" class="text-xs font-medium px-2 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 focus:outline-none focus:border-slate-600 transition">
           <option value="data.json">Aktiv sesong</option>
           <option value="archive/host-2026/data.json">Høst 2026 (Arkiv)</option>
+          <option value="archive/var-2026/data.json">Vår 2026</option>
+          <option value="archive/host-2025/data.json">Høst 2025</option>
+          <option value="archive/var-2025/data.json">Vår 2025</option>
+          <option value="archive/host-2024/data.json">Høst 2024</option>
+          <option value="archive/var-2024/data.json">Vår 2024</option>
+          <option value="archive/host-2023/data.json">Høst 2023</option>
+          <option value="archive/var-2023/data.json">Vår 2023</option>
+          <option value="archive/host-2022/data.json">Høst 2022</option>
+          <option value="archive/var-2022/data.json">Vår 2022</option>
         </select>
         <a href="https://bullshooter.no/index.php/liga/ligaspill-hedmark/hedmark-c" target="_blank" rel="noopener" class="text-xs font-medium px-2.5 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 transition">
           Kilde
@@ -610,17 +619,23 @@
     function renderApp(data) {
       appData = data;
 
-      const latestR = data.latest_round ? (data.latest_round.number || 12) : 12;
-      const latestDate = data.latest_round ? (data.latest_round.date || '') : '';
+      const schedule = data.schedule || [];
+      const fallbackRound = schedule.length > 0 ? schedule[schedule.length - 1].round : 1;
+      const latestR = (data.latest_round && data.latest_round.number) ? data.latest_round.number : fallbackRound;
+      const latestDate = (data.latest_round && data.latest_round.date) ? data.latest_round.date : (data.updated_at || '');
       selectedRoundNum = latestR;
 
-      // Default current viewing team in Lag-fanen
+      // Default current viewing team in Lag-fanen (reset if not in this season's teams)
       const teams = (data.standings || []).map(s => s.team);
-      if (!currentViewingTeam && teams.length > 0) {
-        currentViewingTeam = favoriteTeam || teams[0];
+      if ((!currentViewingTeam || !teams.includes(currentViewingTeam)) && teams.length > 0) {
+        currentViewingTeam = (favoriteTeam && teams.includes(favoriteTeam)) ? favoriteTeam : teams[0];
       }
 
-      document.getElementById('header-updated').innerText = `Siste oppdatering: Runde ${latestR} (${latestDate})`;
+      if (data.latest_round && data.latest_round.number) {
+        document.getElementById('header-updated').innerText = `Siste oppdatering: Runde ${latestR} (${latestDate})`;
+      } else {
+        document.getElementById('header-updated').innerText = `${data.season || 'Arkivert sesong'} (${data.updated_at || ''})`;
+      }
 
       populateTeamDropdowns();
       renderStandingsTable();
@@ -758,10 +773,14 @@
       const select = document.getElementById('runder-round-select');
       select.innerHTML = '';
       const allRounds = appData.all_rounds || {};
-      const roundNumbers = Object.keys(allRounds).map(n => parseInt(n)).sort((a,b) => b - a);
+      const schedule = appData.schedule || [];
+      let roundNumbers = Object.keys(allRounds).map(n => parseInt(n)).sort((a,b) => b - a);
+      if (roundNumbers.length === 0 && schedule.length > 0) {
+        roundNumbers = schedule.map(r => r.round).sort((a,b) => b - a);
+      }
 
       roundNumbers.forEach(rNum => {
-        const rData = allRounds[String(rNum)];
+        const rData = allRounds[String(rNum)] || schedule.find(r => r.round === rNum) || {};
         const opt = document.createElement('option');
         opt.value = rNum;
         opt.innerText = `Runde ${rNum} (${rData.date || ''})`;
@@ -773,7 +792,8 @@
     function loadRoundView(roundNum) {
       selectedRoundNum = parseInt(roundNum);
       const allRounds = appData.all_rounds || {};
-      const rData = allRounds[String(selectedRoundNum)] || appData.latest_round || {};
+      const schedMatch = (appData.schedule || []).find(r => r.round === selectedRoundNum);
+      const rData = allRounds[String(selectedRoundNum)] || appData.latest_round || schedMatch || {};
 
       document.getElementById('runder-header-title').innerText = `Runde ${selectedRoundNum}`;
       document.getElementById('runder-header-date').innerText = rData.date ? `Spilt ${rData.date}` : '';
@@ -1223,6 +1243,10 @@
 
       const allRounds = appData.all_rounds || {};
       const roundNumbers = Object.keys(allRounds).map(n => parseInt(n)).sort((a,b) => b - a);
+
+      if (roundNumbers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-xs text-slate-500 font-sans">Ingen runde-for-runde historikk arkivert for denne sesongen.</td></tr>';
+      }
 
       let playedAny = false;
 
