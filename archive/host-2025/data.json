@@ -46,51 +46,6 @@
       "losses": 87,
       "leg_diff": "-18",
       "points": 3
-    },
-    {
-      "team": "Fall Guys",
-      "win_pct": 59.6,
-      "games": 156,
-      "wins": 93,
-      "losses": 63,
-      "leg_diff": "+30",
-      "points": 10
-    },
-    {
-      "team": "Dart Vader",
-      "win_pct": 54.5,
-      "games": 156,
-      "wins": 85,
-      "losses": 71,
-      "leg_diff": "+14",
-      "points": 7
-    },
-    {
-      "team": "Darty Nellie",
-      "win_pct": 51.3,
-      "games": 156,
-      "wins": 80,
-      "losses": 76,
-      "leg_diff": "+ 4",
-      "points": 6
-    },
-    {
-      "team": "Minions Dart",
-      "win_pct": 40.4,
-      "games": 156,
-      "wins": 63,
-      "losses": 93,
-      "leg_diff": "-30",
-      "points": 4
-    },
-    {
-      "team": "Team Aloha",
-      "win_pct": 44.2,
-      "games": 156,
-      "wins": 69,
-      "losses": 87,
-      "leg_diff": "-18",
-      "points": 3
     }
   ],
   "schedule": [
